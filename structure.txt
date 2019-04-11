@@ -1,0 +1,70 @@
+.
+├── app.js
+├── bin
+│   └── www
+├── configs
+│   └── db.js
+├── controllers
+│   ├── admin
+│   │   └── index.js
+│   ├── index.js
+│   └── user
+│       └── index.js
+├── models
+│   ├── admin.model.js
+│   ├── miniSoccerField.model.js
+│   └── user.model.js
+├── package.json
+├── package-lock.json
+├── public
+│   ├── fonts
+│   ├── img
+│   ├── javascripts
+│   └── stylesheets
+│       └── style.css
+├── README.md
+├── routes
+│   ├── index.js
+│   └── users.js
+├── structure.txt
+├── views
+│   ├── error.ejs
+│   └── index.ejs
+└── yarn.lock
+
+13 directories, 19 files
+.
+├── app.js
+├── bin
+│   └── www
+├── configs
+│   └── db.js
+├── controllers
+│   ├── admin
+│   │   └── index.js
+│   ├── index.js
+│   └── user
+│       └── index.js
+├── models
+│   ├── admin.model.js
+│   ├── field.model.js
+│   └── user.model.js
+├── package.json
+├── package-lock.json
+├── public
+│   ├── fonts
+│   ├── img
+│   ├── javascripts
+│   └── stylesheets
+│       └── style.css
+├── README.md
+├── routes
+│   ├── index.js
+│   └── users.js
+├── structure.txt
+├── views
+│   ├── error.ejs
+│   └── index.ejs
+└── yarn.lock
+
+13 directories, 19 files
