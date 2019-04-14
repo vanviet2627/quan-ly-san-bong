@@ -41,13 +41,13 @@ let userRole = [
 
 // Login facebook
 
-class UserClass {
-    static createUserWithEmail(info, callback) {
-        if(typeof info == undefined || typeof info.email == undefined || typeof info.password == undefined){
-            return
-        }
-    }
-}
+// class UserClass {
+//     static createUserWithEmail(info, callback) {
+//         if(!info || !info.email || !info.password){
+            
+//         }
+//     }
+// }
 
 
 
@@ -57,4 +57,6 @@ let UserModel = mongoose.model(ModelName, userSchema);
 
 module.exports = UserModel;
 module.exports.ModelName = ModelName;
+module.exports = {
 
+}
