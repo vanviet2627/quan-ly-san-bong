@@ -3205,7 +3205,6 @@ body.mobile-nav-active #mobile-nav-toggle {
   padding: 10px;
   font-size: 14px;
   border: none;
-  float: left;
   width: 80%;
   background: #eee;
 }
