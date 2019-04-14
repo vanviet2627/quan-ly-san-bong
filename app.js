@@ -9,7 +9,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var soccerFieldRouter = require('./routes/soccerField');
 
-require('./configs/connectDatabase');
+// require('./configs/connectDatabase');
 
 var app = express();
 
