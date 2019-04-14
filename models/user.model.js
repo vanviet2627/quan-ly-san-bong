@@ -41,13 +41,13 @@ let userRole = [
 
 // Login facebook
 
-// class UserClass {
-//     static createUserWithEmail(info, callback) {
-//         if(typeof info == undefined || typeof info.email == undefined || typeof info.password == undefined){
-
-//         }
-//     }
-// }
+class UserClass {
+    static createUserWithEmail(info, callback) {
+        if(typeof info == undefined || typeof info.email == undefined || typeof info.password == undefined){
+            return
+        }
+    }
+}
 
 
 
