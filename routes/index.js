@@ -3,7 +3,8 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', {isLogin: true});
+  // Validate isLogin
+  res.render('index', {isLogin: false});
 });
 
 router.get('/user', (req, res) => {
@@ -12,6 +13,14 @@ router.get('/user', (req, res) => {
 
 router.get('/admin', (req, res) => {
   res.render('admin');
+});
+
+router.post('/signin', (req, res) => {
+  res.redirect('/');
+});
+
+router.post('/signup', (req, res) => {
+  res.redirect('/');
 })
 
 module.exports = router;

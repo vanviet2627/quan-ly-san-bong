@@ -8,37 +8,17 @@
                 <% if(isLogin){ %>
                     <ul class="nav-menu">
                         <li class="nav-item"><a href="/history">Lịch sử</a></li>
-                        <a data-toggle="modal" data-target="#modalSignin" class="primary-btn text-uppercase ml-3">Đặt sân</a>	          
+                        <a href="/order" class="primary-btn text-uppercase ml-3 px-4">Đặt sân</a>	          
                     </ul>
                 <% } else{ %>
                     <ul class="nav-menu">
                         <li class="nav-item"><a href="/lichsan">Lịch sân</a></li>
-                        <li class="nav-item"><a href="/signup">Đăng ký</a></li>
-                        <a href="/signin" data-toggle="modal" data-target="#modalSignin" class="primary-btn text-uppercase ml-3">Đăng nhập</a>	          
+                        <li class="nav-item"><a href="#" data-toggle="modal" data-target="#signupModal">Đăng ký</a></li>
+                        <a href="#" data-toggle="modal" data-target="#signinModal" class="primary-btn text-uppercase ml-3">Đăng nhập</a>	          
                     </ul>
                 <% } %>
-                <!-- Modal -->
-                <div class="modal fade" id="modalSignin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                      <div class="modal-body">
-                        ...
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
             </nav><!-- #nav-menu-container -->		    		
         </div>
     </div>
-    <hr>
+    <!-- <hr> -->
 </header><!-- #header -->
