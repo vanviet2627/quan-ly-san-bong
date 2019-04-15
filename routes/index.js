@@ -14,8 +14,4 @@ router.get('/Admin', (req, res) => {
   res.render('Admin', {isLogin: true});
 });
 
-router.get('/lyLich', (req, res) => {
-  res.send('lyLich', {isLogin: true});
-});
-
 module.exports = router;
