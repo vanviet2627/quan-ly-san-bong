@@ -21,6 +21,11 @@ router.post('/signin', (req, res) => {
 
 router.post('/signup', (req, res) => {
   res.redirect('/');
-})
+});
+
+router.get('/searchfield', (req, res) => {
+  res.render('searchField', {isLogin: false});
+});
+
 
 module.exports = router;
