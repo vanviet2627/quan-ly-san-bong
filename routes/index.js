@@ -14,4 +14,12 @@ router.get('/Admin', (req, res) => {
   res.render('Admin', {isLogin: true});
 });
 
+router.get('/lyLich', (req, res) => {
+  res.render('lyLich', {isLogin: true});
+});
+
+router.get('/account', (req, res) => {
+ res.render('account', {isLogin: true});
+});
+
 module.exports = router;
