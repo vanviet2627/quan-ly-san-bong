@@ -5,7 +5,7 @@ router.get('/lyLich', (req, res) => {
     res.render('lyLich', {isLogin: true});
   });
   
-router.get('/taiKhoan', (req, res) => {
-   res.render('taiKhoan', {isLogin: true});
+router.get('/account', (req, res) => {
+   res.render('account', {isLogin: true});
   });
 module.exports = router;
