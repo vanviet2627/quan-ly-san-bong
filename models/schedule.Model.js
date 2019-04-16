@@ -3,7 +3,7 @@ const db = require('../configs/connectDatabase');
 const mongoose = require('mongoose');
 var slug = require('mongoose-slug-updater');
 mongoose.plugin(slug);
-
+const Sanbong = require('../models/pitches.Model').Sanbong
 var mongoosePaginate = require('mongoose-paginate');
 const Schema = mongoose.Schema;
 
@@ -14,16 +14,20 @@ var schedule= new Schema({
         ref : "Pitches",
     },
     
-    renter :[
+    renter :{
         // Người Thuê
-        {type: Schema.Types.ObjectId, ref : "User"}
-    ],
+        type : String,
+        default:'admin',
+    },
     ngayThue :{
-        type : Date,
+        type : String,
 
     },
+    dattu:{
+        type : String,
+    },
     thoiluongThue:{
-        type : Date,
+        type : String,
     },
     ngaytao :{
         type: Date,
@@ -38,7 +42,7 @@ var schedule= new Schema({
 schedule.plugin(mongoosePaginate);
 const lichDatSan = mongoose.model('schedule', schedule);
 
-class lichDatSan_Database{
+module.exports = class lichDatSan_Database{
     constructor(data){
         this.data = data
     }
@@ -53,15 +57,12 @@ class lichDatSan_Database{
     async add_schedule(){
         if(this.data){
             let myData = new lichDatSan(this.data)
-            return t = await myData.save();
+            let t = await myData.save();
             // update lại trang thái sân từ 0 -> 1
-            //await lichDatSan.findOneAndUpdate({sanbong : t._id},{status : 1})
+            await Sanbong.findByIdAndUpdate({_id : t._id},{status : 1})
+            return t;
         }
         
     }
-    //
+    
 }
-module.exports = {
-   
-   
-};
