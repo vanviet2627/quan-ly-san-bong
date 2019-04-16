@@ -1,15 +1,39 @@
-let mongoose = require('mongoose');
-require('dotenv').config();
-const db_url = process.env.DB_LOCALHOST || process.env.DB_MLAB;
+var mongoose = require('mongoose');
+mongoose.set('useCreateIndex', true);
+const mlabURI = 'mongodb://hieudu0ngtrung:duongtrunghieu01@ds034797.mlab.com:34797/quanlysanbong'  
+const dbName = 'quanlysanbong';
+const connectdb = mongoose.connect(mlabURI,{
+	reconnectTries : Number.MAX_VALUE,
+	autoReconnect : true,
+	useNewUrlParser: true
+}, (error) => {
+	if(error){
+		console.log("Error " + error);
+	}else{
+		console.log("kết nối với server database thành công")
+	}
+});
 
-class Database {
-    constructor(){
-        this._connect();
-    }
-    _connect(){
-        mongoose.connect( db_url, { useNewUrlParser: true })
-            .then(() => console.log("Database connected!"))
-            .catch((err) => console.log("Database connect error!" + err))
-    }
-}
-module.exports = new Database;
+module.exports = connectdb;
+// const mongoose = require('mongoose');
+// mongoose.set('useCreateIndex', true);
+// const mlabURI = 'mongodb://hieudu0ngtrung:duongtrunghieu01@ds034797.mlab.com:34797/quanlysanbong'
+
+
+// class Database{
+    
+//     static _connect(){
+//         mongoose.connect(mlabURI,{
+//             reconnectTries : Number.MAX_VALUE,
+// 	        autoReconnect : true,
+// 	        useNewUrlParser: true
+//         })
+//         .then((rs) => {
+//             console.log("kết nối với server database thành công")
+//         }).catch((err) => {
+//             console.log("Error " + error);
+//         });
+//     }
+// }
+
+// module.exports = new Database;
