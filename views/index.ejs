@@ -1,480 +1,219 @@
-	<!DOCTYPE html>
-	<html lang="vi" class="no-js">
-	<% include layouts/head %>
-	<body>
-		<% include layouts/header %>
+<!DOCTYPE html>
+<html lang="vi" class="no-js">
+<% include layouts/head %>
+<body>
+	<% include layouts/header %>
 
-		<!-- start banner Area -->
-		<section class="banner-area relative" id="home">
-			<div class="overlay overlay-bg"></div>	
-			<div class="container">
-				<div class="row fullscreen d-flex align-items-center justify-content-center">
-					<div class="banner-content col-lg-8">
-						<h1 class="text-white">
-							Đặt sân nhanh chóng, nhiều ưu đãi và tiện ích				
-						</h1>
-						<p class="pt-20 pb-20 text-white">
-							Đặt sân dễ dàng, khung giờ linh hoạt, quản lý lịch đấu & mời giao hữu một cách thuận tiện.
-						</p>
-						<a href="#" class="primary-btn py-3 text-uppercase">Đặt sân</a>
-					</div>											
+	<!-- Start signin Modal area -->
+	<div class="modal fade" id="signinModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">Đăng nhập</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body mx-3">
+	        <form action="/signin">
+	        	<div class="form-group">
+							<label for="inputEmail">Email hoặc SĐT:</label>
+							<input type="text" class="form-control" id="inputTypeOfField">
+						</div>
+						<div class="form-group">
+							<label for="inputPassword">Mật khẩu:</label>
+							<input type="password" class="form-control" id="inputPassword">
+						</div>
+						<button type="submit" class="primary-btn py-2 text-uppercase d-block mx-auto">Đăng nhập</button>
+	        </form>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<!-- End signin Modal area -->
+
+	<!-- Start signup Modal area -->
+	<div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Đăng ký</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
 				</div>
-			</div>					
-		</section>
-		<!-- End banner Area -->	
-
-		<!-- Start finding Area -->
-		<section id="finding">
-			<div class="container-fluid">
-				<div class="row">
-					<div class="col-4">
-						
-					</div>
-					<div class="col-8"></div>
+				<div class="modal-body mx-3">
+					<form action="/signup">
+						<div class="form-group">
+							<label for="inputEmail">Email hoặc SĐT:</label>
+							<input type="text" class="form-control" id="inputTypeOfField">
+						</div>
+						<div class="form-group">
+							<label for="inputPassword">Mật khẩu:</label>
+							<input type="password" class="form-control" id="inputPassword">
+						</div>
+						<div class="form-group">
+								<label for="inputPassword">Nhập lại mật khẩu:</label>
+								<input type="password" class="form-control" id="inputRePassword">
+							</div>
+						<button type="submit" class="primary-btn py-2 text-uppercase d-block mx-auto">Đăng ký</button>
+					</form>
 				</div>
 			</div>
-		</section>
-		<!-- End finding Area -->
-
-		<!-- Start service Area -->
-		<section class="service-area pt-100" id="about">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-4">
-						<div class="single-service">
-							<span class="lnr lnr-clock"></span>
-							<h4>Openning Hours</h4>
-							<p>
-							Mon - Fri: 10.00am to 05.00pm
-							Sat: 12.00pm to 03.00 pm
-							Sunday Closed
-							</p>						 	
-							<div class="overlay">
-							<div class="text">
-								<p>
-									Here, I focus on a range of items and features that we use in life Here, I focus on a range of items and features that we use in life Here, I focus on a range of items and features.that we use in life
-								</p>
-								<a href="#" class="text-uppercase primary-btn">Buy ticket</a>
-							</div>
-							</div>
-						</div>							
-					</div>
-					<div class="col-lg-4">
-						<div class="single-service">
-							<span class="lnr lnr-rocket"></span>
-							<h4>Ongoing Exhibitions</h4>
-							<p>
-							Mon - Fri: 10.00am to 05.00pm
-							Sat: 12.00pm to 03.00 pm
-							Sunday Closed
-							</p>						 	
-							<div class="overlay">
-							<div class="text">
-								<p>
-									Here, I focus on a range of items and features that we use in life Here, I focus on a range of items and features that we use in life Here, I focus on a range of items and features.that we use in life
-								</p>
-								<a href="#" class="text-uppercase primary-btn">Buy ticket</a>
-							</div>
-							</div>
-						</div>							
-					</div>
-					<div class="col-lg-4">
-						<div class="single-service">
-							<span class="lnr lnr-briefcase"></span>
-							<h4>Openning Events</h4>
-							<p>
-							Mon - Fri: 10.00am to 05.00pm
-							Sat: 12.00pm to 03.00 pm
-							Sunday Closed
-							</p>						 	
-							<div class="overlay">
-							<div class="text">
-								<p>
-									Here, I focus on a range of items and features that we use in life Here, I focus on a range of items and features that we use in life Here, I focus on a range of items and features.that we use in life
-								</p>
-								<a href="#" class="text-uppercase primary-btn">Buy ticket</a>
-							</div>
-							</div>
-						</div>							
-					</div>												
-				</div>
-			</div>	
-		</section>
-		<!-- End service Area -->
-		
-		<!-- Start quote Area -->
-		<section class="quote-area section-gap">
-			<div class="container">				
-				<div class="row">
-					<div class="col-lg-6 quote-left">
-						<h1>
-							<span>Music</span> gives soul to the universe, <br>
-							wings to the <span>mind</span>, flight <br>
-							to the <span>imagination</span>.
-						</h1>
-					</div>
-					<div class="col-lg-6 quote-right">
-						<p>
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore  et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-						</p>
-					</div>
-				</div>
-			</div>	
-		</section>
-		<!-- End quote Area -->
-
-		<!-- Start exibition Area -->
-		<section class="exibition-area section-gap" id="exhibitions">
-			<div class="container">
-				<div class="row d-flex justify-content-center">
-					<div class="menu-content pb-60 col-lg-10">
-						<div class="title text-center">
-							<h1 class="mb-10">Ongoing Exhibitions from the scratch</h1>
-							<p>Who are in extremely love with eco friendly system.</p>
-						</div>
-					</div>
-				</div>						
-				<div class="row">
-					<div class="active-exibition-carusel">
-						<div class="single-exibition item">
-							<img src="img/e1.jpg" alt="">
-							<ul class="tags">
-								<li><a href="#">Travel</a></li>
-								<li><a href="#">Life style</a></li>
-							</ul>
-							<a href="#"><h4>Portable latest blog for women</h4></a>
-							<p>
-								Lorem ipsum dolor sit amet, consec teturadip isicing elit, sed do eiusmod tempor.
-							</p>
-							<h6 class="date">31st January, 2018</h6>
-						</div>
-
-						<div class="single-exibition item">
-							<img src="img/e2.jpg" alt="">
-							<ul class="tags">
-								<li><a href="#">Travel</a></li>
-								<li><a href="#">Life style</a></li>
-							</ul>
-							<a href="#"><h4>Portable latest blog for women</h4></a>
-							<p>
-								Lorem ipsum dolor sit amet, consec teturadip isicing elit, sed do eiusmod tempor.
-							</p>
-							<h6 class="date">31st January, 2018</h6>
-						</div>
-
-						<div class="single-exibition item">
-							<img src="img/e3.jpg" alt="">
-							<ul class="tags">
-								<li><a href="#">Travel</a></li>
-								<li><a href="#">Life style</a></li>
-							</ul>
-							<a href="#"><h4>Portable latest blog for women</h4></a>
-							<p>
-								Lorem ipsum dolor sit amet, consec teturadip isicing elit, sed do eiusmod tempor.
-							</p>
-							<h6 class="date">31st January, 2018</h6>
-						</div>							
-						<div class="single-exibition item">
-							<img src="img/e1.jpg" alt="">
-							<ul class="tags">
-								<li><a href="#">Travel</a></li>
-								<li><a href="#">Life style</a></li>
-							</ul>
-							<a href="#"><h4>Portable latest blog for women</h4></a>
-							<p>
-								Lorem ipsum dolor sit amet, consec teturadip isicing elit, sed do eiusmod tempor.
-							</p>
-							<h6 class="date">31st January, 2018</h6>
-						</div>
-
-						<div class="single-exibition item">
-							<img src="img/e2.jpg" alt="">
-							<ul class="tags">
-								<li><a href="#">Travel</a></li>
-								<li><a href="#">Life style</a></li>
-							</ul>
-							<a href="#"><h4>Portable latest blog for women</h4></a>
-							<p>
-								Lorem ipsum dolor sit amet, consec teturadip isicing elit, sed do eiusmod tempor.
-							</p>
-							<h6 class="date">31st January, 2018</h6>
-						</div>
-
-						<div class="single-exibition item">
-							<img src="img/e3.jpg" alt="">
-							<ul class="tags">
-								<li><a href="#">Travel</a></li>
-								<li><a href="#">Life style</a></li>
-							</ul>
-							<a href="#"><h4>Portable latest blog for women</h4></a>
-							<p>
-								Lorem ipsum dolor sit amet, consec teturadip isicing elit, sed do eiusmod tempor.
-							</p>
-							<h6 class="date">31st January, 2018</h6>
-						</div>							
-						<div class="single-exibition item">
-							<img src="img/e1.jpg" alt="">
-							<ul class="tags">
-								<li><a href="#">Travel</a></li>
-								<li><a href="#">Life style</a></li>
-							</ul>
-							<a href="#"><h4>Portable latest blog for women</h4></a>
-							<p>
-								Lorem ipsum dolor sit amet, consec teturadip isicing elit, sed do eiusmod tempor.
-							</p>
-							<h6 class="date">31st January, 2018</h6>
-						</div>
-
-						<div class="single-exibition item">
-							<img class="img-fluid" src="img/e2.jpg" alt="">
-							<ul class="tags">
-								<li><a href="#">Travel</a></li>
-								<li><a href="#">Life style</a></li>
-							</ul>
-							<a href="#"><h4>Portable latest blog for women</h4></a>
-							<p>
-								Lorem ipsum dolor sit amet, consec teturadip isicing elit, sed do eiusmod tempor.
-							</p>
-							<h6 class="date">31st January, 2018</h6>
-						</div>
-
-						<div class="single-exibition item">
-							<img class="img-fluid" src="img/e3.jpg" alt="">
-							<ul class="tags">
-								<li><a href="#">Travel</a></li>
-								<li><a href="#">Life style</a></li>
-							</ul>
-							<a href="#"><h4>Portable latest blog for women</h4></a>
-							<p>
-								Lorem ipsum dolor sit amet, consec teturadip isicing elit, sed do eiusmod tempor.
-							</p>
-							<h6 class="date">31st January, 2018</h6>
-						</div>
-					</div>													
-				</div>
-			</div>	
-		</section>
-		<!-- End exibition Area -->			
+		</div>
+	</div>
+	<!-- End signin Modal area -->
 	
-		<!-- Start upcoming-event Area -->
-		<section class="upcoming-event-area section-gap" id="events">
-			<div class="container">
-				<div class="row d-flex justify-content-center">
-					<div class="menu-content pb-60 col-lg-10">
-						<div class="title text-center">
-							<h1 class="mb-10">Checkout our Upcoming Events</h1>
-							<p>Who are in extremely love with eco friendly system.</p>
-						</div>
-					</div>
-				</div>						
-				<div class="row">
-					<div class="col-lg-6 event-left">
-						<div class="single-events">
-							<img class="img-fluid" src="img/u1.jpg" alt="">
-							<a href="#"><h4>Event on the rock solid carbon</h4></a>
-							<h6><span>21st February</span> at Central government museum</h6>
-							<p>
-								inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially.
-							</p>
-							<a href="#" class="primary-btn text-uppercase">View Details</a>
-						</div>
-						<div class="single-events">
-							<img class="img-fluid" src="img/u3.jpg" alt="">
-							<a href="#"><h4>Event on the rock solid carbon</h4></a>
-							<h6><span>21st February</span> at Central government museum</h6>
-							<p>
-								inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially.
-							</p>
-							<a href="#" class="primary-btn text-uppercase">View Details</a>
-						</div>							
-					</div>
-					<div class="col-lg-6 event-right">
-						<div class="single-events">
-							<a href="#"><h4>Event on the rock solid carbon</h4></a>
-							<h6><span>21st February</span> at Central government museum</h6>
-							<p>
-								inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially.
-							</p>
-							<a href="#" class="primary-btn text-uppercase">View Details</a>
-							<img class="img-fluid" src="img/u2.jpg" alt="">
-						</div>
-						<div class="single-events">
-							
-							<a href="#"><h4>Event on the rock solid carbon</h4></a>
-							<h6><span>21st February</span> at Central government museum</h6>
-							<p>
-								inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially.
-							</p>
-							<a href="#" class="primary-btn text-uppercase">View Details</a>
-							<img class="img-fluid" src="img/u4.jpg" alt="">
-						</div>							
-					</div>
-				</div>
-			</div>	
-		</section>
-		<!-- End upcoming-event Area -->
-		
-		<!-- Start blog Area -->
-		<section class="blog-area section-gap" id="blog">
-			<div class="container">
-				<div class="row d-flex justify-content-center">
-					<div class="menu-content pb-70 col-lg-8">
-						<div class="title text-center">
-							<h1 class="mb-10">Latest From Our Blog</h1>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore  et dolore magna aliqua.</p>
-						</div>
-					</div>
-				</div>					
-				<div class="row">
-					<div class="col-lg-3 col-md-6 single-blog">
-						<div class="thumb">
-							<img class="img-fluid" src="img/b1.jpg" alt="">								
-						</div>
-						<p class="date">10 Jan 2018</p>
-						<a href="#"><h4>Addiction When Gambling
-						Becomes A Problem</h4></a>
-						<p>
-							inappropriate behavior ipsum dolor sit amet, consectetur.
-						</p>
-						<div class="meta-bottom d-flex justify-content-between">
-							<p><span class="lnr lnr-heart"></span> 15 Likes</p>
-							<p><span class="lnr lnr-bubble"></span> 02 Comments</p>
-						</div>									
-					</div>
-					<div class="col-lg-3 col-md-6 single-blog">
-						<div class="thumb">
-							<img class="img-fluid" src="img/b2.jpg" alt="">								
-						</div>
-						<p class="date">10 Jan 2018</p>
-						<a href="#"><h4>Addiction When Gambling
-						Becomes A Problem</h4></a>
-						<p>
-							inappropriate behavior ipsum dolor sit amet, consectetur.
-						</p>
-						<div class="meta-bottom d-flex justify-content-between">
-							<p><span class="lnr lnr-heart"></span> 15 Likes</p>
-							<p><span class="lnr lnr-bubble"></span> 02 Comments</p>
-						</div>									
-					</div>
-					<div class="col-lg-3 col-md-6 single-blog">
-						<div class="thumb">
-							<img class="img-fluid" src="img/b3.jpg" alt="">								
-						</div>
-						<p class="date">10 Jan 2018</p>
-						<a href="#"><h4>Addiction When Gambling
-						Becomes A Problem</h4></a>
-						<p>
-							inappropriate behavior ipsum dolor sit amet, consectetur.
-						</p>
-						<div class="meta-bottom d-flex justify-content-between">
-							<p><span class="lnr lnr-heart"></span> 15 Likes</p>
-							<p><span class="lnr lnr-bubble"></span> 02 Comments</p>
-						</div>									
-					</div>
-					<div class="col-lg-3 col-md-6 single-blog">
-						<div class="thumb">
-							<img class="img-fluid" src="img/b4.jpg" alt="">								
-						</div>
-						<p class="date">10 Jan 2018</p>
-						<a href="#"><h4>Addiction When Gambling
-						Becomes A Problem</h4></a>
-						<p>
-							inappropriate behavior ipsum dolor sit amet, consectetur.
-						</p>
-						<div class="meta-bottom d-flex justify-content-between">
-							<p><span class="lnr lnr-heart"></span> 15 Likes</p>
-							<p><span class="lnr lnr-bubble"></span> 02 Comments</p>
-						</div>									
-					</div>							
-				</div>
-			</div>	
-		</section>
-		<!-- End blog Area -->
+	<!-- start banner Area -->
+	<section class="banner-area relative" id="home">
+		<div class="overlay overlay-bg"></div>	
+		<div class="container">
+			<div class="row fullscreen d-flex align-items-center justify-content-center">
+				<div class="banner-content col-lg-8">
+					<h1 class="text-white">
+						Đặt sân nhanh chóng, nhiều ưu đãi và tiện ích				
+					</h1>
+					<p class="pt-20 pb-20 text-white">
+						Đặt sân dễ dàng, khung giờ linh hoạt, quản lý lịch đấu & mời giao hữu một cách thuận tiện.
+					</p>
+					<a href="#finding" class="primary-btn py-3 text-uppercase">Đặt sân</a>
+				</div>											
+			</div>
+		</div>					
+	</section>
+	<!-- End banner Area -->	
 
-		<!-- Start gallery Area -->
-		<section class="gallery-area section-gap" id="gallery">
-			<div class="container">
-				<div class="row d-flex justify-content-center">
-					<div class="menu-content pb-70 col-lg-8">
-						<div class="title text-center">
-							<h1 class="mb-10 text-white">Our Exhibition Gallery</h1>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore  et dolore magna aliqua.</p>
-						</div>
+	<!-- Start finding Area -->
+	<section id="finding">
+		<div class="container">
+			<div class="row">
+				<div class="col-6 offset-3 mt-5
+				">
+					<div class="my-4 mx-2">
+						<h2 class="mb-3">Đặt sân</h2>
+						<form>
+						  <div class="form-row">
+						    <div class="form-group col-md-6">
+						      <label for="inputTypeOfField">Chọn loại sân:</label>
+						      <select id="inputTypeOfField" class="form-control">
+										<option selected>5 người</option>
+										<option>7 người</option>
+										<option>12 người</option>
+						      </select>
+						    </div>
+						    <div class="form-group col-md-6">
+						      <label for="datepicker">Chọn ngày:</label>
+						      <input type="text" class="form-control" id="datepicker" placeholder="">
+						    </div>
+						  </div>
+						  <div class="form-row">
+						    <div class="form-group col-md-6">
+						      <label for="inputDateFrom">Đặt từ:</label>
+						      <select id="inputDateFrom" class="form-control">
+										<option selected>05:00</option>
+										<option>05:30</option>
+										<option>06:00</option>
+										<option>06:30</option>
+										<option>07:00</option>
+										<option>07:30</option>
+										<option>08:00</option>
+										<option>08:30</option>
+										<option>09:00</option>
+										<option>09:30</option>
+										<option>10:00</option>
+										<option>10:30</option>
+										<option>11:00</option>
+										<option>11:30</option>
+										<option>12:00</option>
+										<option>12:30</option>
+										<option>13:00</option>
+										<option>13:30</option>
+										<option>14:00</option>
+										<option>14:30</option>
+										<option>15:00</option>
+										<option>15:30</option>
+										<option>16:00</option>
+										<option>16:30</option>
+										<option>17:00</option>
+										<option>17:30</option>
+										<option>18:00</option>
+										<option>18:30</option>
+										<option>19:00</option>
+										<option>19:30</option>
+										<option>20:00</option>
+										<option>20:30</option>
+										<option>21:00</option>
+										<option>21:30</option>
+										<option>22:00</option>
+										<option>22:30</option>
+						      </select>
+						    </div>
+						    <div class="form-group col-md-6">
+						      <label for="inputLasting">Đặt trong:</label>
+						      <select id="inputLasting" class="form-control">
+						        <option selected>1 giờ</option>
+						        <option>1.5 giờ</option>
+						        <option>2 giờ</option>
+						      </select>
+						    </div>
+						  </div>
+						  <button type="button" class="primary-btn py-2 text-uppercase d-block mx-auto mt-1">Đặt sân</button>
+						</form>
 					</div>
-				</div>						
-				<div id="grid-container" class="row">
-					<a class="single-gallery" href="img/g1.jpg"><img class="grid-item" src="img/g1.jpg"></a>
-					<a class="single-gallery" href="img/g2.jpg"><img class="grid-item" src="img/g2.jpg"></a>
-					<a class="single-gallery" href="img/g3.jpg"><img class="grid-item" src="img/g3.jpg"></a>
-					<a class="single-gallery" href="img/g4.jpg"><img class="grid-item" src="img/g4.jpg"></a>
-					<a class="single-gallery" href="img/g5.jpg"><img class="grid-item" src="img/g5.jpg"></a>
-					<a class="single-gallery" href="img/g6.jpg"><img class="grid-item" src="img/g6.jpg"></a>
-					<a class="single-gallery" href="img/g7.jpg"><img class="grid-item" src="img/g7.jpg"></a>
-					<a class="single-gallery" href="img/g8.jpg"><img class="grid-item" src="img/g8.jpg"></a>
-					<a class="single-gallery" href="img/g9.jpg"><img class="grid-item" src="img/g9.jpg"></a>
-					<a class="single-gallery" href="img/g10.jpg"><img class="grid-item" src="img/g10.jpg"></a>
-					<a class="single-gallery" href="img/g11.jpg"><img class="grid-item" src="img/g11.jpg"></a>
-					<a class="single-gallery" href="img/g12.jpg"><img class="grid-item" src="img/g12.jpg"></a>
-					<a class="single-gallery" href="img/g4.jpg"><img class="grid-item" src="img/g4.jpg"></a>
-					<a class="single-gallery" href="img/g5.jpg"><img class="grid-item" src="img/g5.jpg"></a>						
-				</div>	
-			</div>	
-		</section>
-		<!-- End gallery Area -->
-		
-
-		<!-- start footer Area -->		
-		<footer class="footer-area section-gap">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-5 col-md-6 col-sm-6">
-						<div class="single-footer-widget">
-							<h6>About Us</h6>
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore dolore magna aliqua.
-							</p>
-							<p class="footer-text">
-								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-							</p>
-						</div>
-					</div>
-					<div class="col-lg-5  col-md-6 col-sm-6">
-						<div class="single-footer-widget">
-							<h6>Newsletter</h6>
-							<p>Stay update with our latest</p>
-							<div class="" id="mc_embed_signup">
-								<form target="_blank" novalidate="true" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="form-inline">
-									<input class="form-control" name="EMAIL" placeholder="Enter Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email '" required="" type="email">
-										<button class="click-btn btn btn-default"><span class="lnr lnr-arrow-right"></span></button>
-										<div style="position: absolute; left: -5000px;">
-											<input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
-										</div>
-
-									<div class="info"></div>
-								</form>
-							</div>
-						</div>
-					</div>						
-					<div class="col-lg-2 col-md-6 col-sm-6 social-widget">
-						<div class="single-footer-widget">
-							<h6>Follow Us</h6>
-							<p>Let us be social</p>
-							<div class="footer-social d-flex align-items-center">
-								<a href="#"><i class="fa fa-facebook"></i></a>
-								<a href="#"><i class="fa fa-twitter"></i></a>
-								<a href="#"><i class="fa fa-dribbble"></i></a>
-								<a href="#"><i class="fa fa-behance"></i></a>
-							</div>
-						</div>
-					</div>							
 				</div>
 			</div>
-		</footer>	
-		<!-- End footer Area -->		
-		<% include layouts/script %>
-	</body>
+		</div>
+	</section>
+	<!-- End finding Area -->
+
+	<!-- Start service Area -->
+	<section class="service-area pt-50" id="about">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4">
+					<div class="single-service">
+						<span class="lnr lnr-clock"></span>
+						<h4>Thời gian linh hoạt</h4>
+						<p>
+						Đặt lịch và quản lý thời gian tiện lợi, nhắc nhở qua email.
+						</p>						 	
+					</div>							
+				</div>
+				<div class="col-lg-4">
+					<div class="single-service">
+						<span class="lnr lnr-rocket"></span>
+						<h4>Đặt sân nhanh chóng</h4>
+						<p>
+						Đặt sân online mọi lúc mọi nơi, thanh toán nhanh chóng qua ví điện tử hoặc thẻ tín dụng.
+						</p>						 	
+					</div>							
+				</div>
+				<div class="col-lg-4">
+					<div class="single-service">
+						<span class="lnr lnr-briefcase"></span>
+						<h4>Tạo sự kiện đá giao hữu</h4>
+						<p>
+						Chọn sân, lên lịch & mời bạn bè. Quản lý các trận đấu dễ dàng.
+						</p>
+					</div>							
+				</div>												
+			</div>
+		</div>	
+	</section>
+	<!-- End service Area -->
+	
+	<% include layouts/footer %>
+	<% include layouts/script %>
+	<script>
+		  ($(window).scroll(function() {
+		    if ($(this).scrollTop() > 100) {
+      		$('#header').addClass('header-scrolled');
+				} else {
+					$('#header').removeClass('header-scrolled');
+				}
+  		}))
+	</script>
+</body>
 </html>
 
 
