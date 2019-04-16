@@ -1,9 +1,12 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+// router.get('/lyLich', (req, res) => {
+//     res.render('lyLich', {isLogin: true});
+//   });
+  
+// router.get('/account', (req, res) => {
+//    res.render('account', {isLogin: true});
+//   });
 
 module.exports = router;

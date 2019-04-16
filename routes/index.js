@@ -21,7 +21,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/user', (req, res) => {
-  res.render('user');
+  res.render('User', {isLogin: true});
 });
 
 router.get('/admin', (req, res) => {
@@ -53,5 +53,16 @@ router.get('/payment', (req, res) => {
 router.get('/payment/qr', (req, res) => {
   res.render('qr', {isLogin: true});
 })
+router.get('/Admin', (req, res) => {
+  res.render('Admin', {isLogin: true});
+});
+
+router.get('/profile', (req, res) => {
+  res.render('profile', {isLogin: true});
+});
+
+router.get('/account', (req, res) => {
+ res.render('account', {isLogin: true});
+});
 
 module.exports = router;
