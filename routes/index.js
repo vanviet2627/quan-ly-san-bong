@@ -37,8 +37,16 @@ router.get('/payment', (req, res) => {
   // res.json({isLogin: true, data: data});
 });
 
-router.get('/payment/qr', (req, res) => {
+router.get('/qr', (req, res) => {
   res.render('qr', {isLogin: true});
+});
+
+router.get('/payment/qr', (req, res) => {
+  let eWallet = "Ok men";
+  let data = {
+    paymentLink: `<img src='http://chart.apis.google.com/chart?cht=qr&chl=${eWallet}&chs=155' alt='qr' />`
+  }
+  res.status(200).json({data: data});
 })
 
 module.exports = router;
