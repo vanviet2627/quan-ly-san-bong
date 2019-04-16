@@ -5,8 +5,13 @@ var router = express.Router();
 //     res.render('lyLich', {isLogin: true});
 //   });
   
-// router.get('/account', (req, res) => {
-//    res.render('account', {isLogin: true});
-//   });
+router.get('/account', (req, res) => {
+  res.render('account', {isLogin: true});
+});
+
+router.get('/signout', (req, res) => {
+  // Handle signout
+  res.redirect('/');
+})
 
 module.exports = router;

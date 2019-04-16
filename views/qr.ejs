@@ -13,7 +13,7 @@
 	<% include layouts/script %>
   <script>
     $('#header').addClass('header-scrolled');
-    $.getJSON('/payment/qr', function(data) {
+    $.getJSON('/payment/ewallet', function(data) {
       if(data){
         $('#qrReplacement').append(data.data.paymentLink);
       }

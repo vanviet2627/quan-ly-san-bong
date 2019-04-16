@@ -21,7 +21,7 @@
               <% } else { %>
                 <div class="form-group form-col-6">
                   <label for="email">Email:</label>
-                  <input type="text" id="email" class="form-control" placeholder="Nhập email để đặt sân">
+                  <input name="email" type="text" id="email" class="form-control" placeholder="Nhập email để đặt sân">
                 </div>
               <% } %>
               <% if(data.sdt){ %>
@@ -31,7 +31,7 @@
               <% } else { %>
                 <div class="form-group form-col-6">
                   <label for="phoneNumber">SDT:</label>
-                  <input type="text" id="phoneNumber" class="form-control" placeholder="Yêu cầu số điện thoại để xác minh">
+                  <input name="phoneNumber" type="text" id="phoneNumber" class="form-control" placeholder="Yêu cầu số điện thoại để xác minh">
                 </div>
               <% } %>
             </div>
@@ -51,13 +51,13 @@
             <h5>Thanh toán:</h5>
             <hr>
             <div class="form-check mt-1">
-              <input class="form-check-input" type="radio" name="mono" id="momo" value="option1" checked>
+              <input class="form-check-input" type="radio" name="exampleRadios" id="momo" value="option1" checked>
               <label class="form-check-label" for="momo">
                 Mono
               </label>
             </div>
             <div class="form-check mt-1">
-              <input class="form-check-input" type="radio" name="zalopay" id="zalopay" value="option2">
+              <input class="form-check-input" type="radio" name="exampleRadios" id="zalopay" value="option2">
               <label class="form-check-label" for="zalopay">
                 Zalopay
               </label>

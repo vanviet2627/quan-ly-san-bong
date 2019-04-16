@@ -11,7 +11,7 @@ router.get('/', (req, res, next) => {
   res.render('index', {
     isLogin: false,
     info: {},
-    data :null
+    data : null
   });
 });
 // api login ảo lòi :))
@@ -102,7 +102,44 @@ router.get('/searchfield', (req, res) => {
   });
 });
 
+// ==========================================
+//                   PAYMENT
+// ==========================================
 
+// QR API link
+router.get('/payment/ewallet/', (req, res) => {
+  let eWallet = "Đấng óc chó Ahihi";
+  let data = {
+    paymentLink: `<img src='http://chart.apis.google.com/chart?cht=qr&chl=${eWallet}&chs=300' alt='qr' />`
+  }
+  res.status(200).json({data: data});
+});
+
+router.get('/payment', (req, res) => {
+  let data = {
+    fieldName: "Sân A",
+    date: "20/4/2019",
+    time: "16:00",
+    email: "asd@gmail.com",
+    // sdt: "0968222222"
+  }
+  res.render('payment', {isLogin: true, data: data});
+});
+
+router.post('/payment', (req, res) => {
+  let info = {
+    phoneNumber: req.body.phoneNumber,
+    typeOfEWallet: req.body.exampleRadios
+  }
+  console.log(info);
+  // Get link API E-Wallet
+
+  res.redirect('/qr');
+});
+
+router.get('/qr', (req, res) => {
+  res.render('qr', {isLogin: true});
+});
 
 router.get('/Admin', (req, res) => {
   res.render('Admin', {
