@@ -4,10 +4,8 @@ const test = require('../models/pitches.Model')
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-<<<<<<< HEAD
   // Validate isLogin
   res.render('index', {isLogin: false});
-=======
   // console.log(test);
   // let info = {
   //   tenSanBong:"test",
@@ -16,9 +14,8 @@ router.get('/', function(req, res, next) {
   // }
   // var t = new test(info)
   // t.save_pitches();
-  
+
   res.render('index', {isLogin: true});
->>>>>>> 03c74b74e5afe7528717d5267a54395224c5e477
 });
 
 router.get('/user', (req, res) => {
