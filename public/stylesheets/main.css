@@ -120,7 +120,7 @@ h1, h2, h3,
 h4, h5, h6 {
   font-family: "Poppins", sans-serif;
   color: #222222;
-  line-height: 1.2em !important;
+  line-height: 1.2em;
   margin-bottom: 0;
   margin-top: 0;
   font-weight: 600;
@@ -1876,7 +1876,7 @@ h1, h2, h3, h4, h5, h6 {
 # Header
 --------------------------------------------------------------*/
 #header {
-  padding: 0px 0px 14px 0;
+  padding: 0px 0px 7px 0;
   position: fixed;
   left: 0;
   top: 0;
@@ -3205,7 +3205,6 @@ body.mobile-nav-active #mobile-nav-toggle {
   padding: 10px;
   font-size: 14px;
   border: none;
-  float: left;
   width: 80%;
   background: #eee;
 }
