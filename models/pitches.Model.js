@@ -8,16 +8,21 @@ const Schema = mongoose.Schema;
 
 var sanbong = new Schema({
    
-    tenSanBong:{
-        type: String , 
-
+    
+    loaisan :{
+        type : Number,
+        /* 5: Sân 5 người
+           7: Sân 7 người
+           12:Sân 12 người
+        */
     },
-    path :{
-        type: String,
-        slug : ["tenSanBong"],
-        unique: true
+    
+    // path :{
+    //     type: String,
+    //     slug : ["tenSanBong"],
+    //     unique: true
      
-    },
+    // },
     status :{
         // Trạng thái
         type:Number,
@@ -33,6 +38,9 @@ var sanbong = new Schema({
     ngaytao :{
         type : Date,
         default:Date.now(),
+    },
+    images :{
+        type:String ,
     }
 
 
@@ -69,5 +77,13 @@ module.exports =class Pitches_Database{
 
               
     }
+    async show_pitches(){
+        // hiện thị sân bóng chưa đặt
+       
+        let t = await Sanbong.find({
+            
+        })
+        return t
+    }
 }
-
+module.exports.Sanbong=Sanbong 
