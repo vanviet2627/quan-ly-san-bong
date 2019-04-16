@@ -3,10 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-<<<<<<< HEAD
-=======
   // Validate isLogin
->>>>>>> home
   res.render('index', {isLogin: false});
 });
 
@@ -14,7 +11,6 @@ router.get('/user', (req, res) => {
   res.render('User', {isLogin: true});
 });
 
-<<<<<<< HEAD
 router.get('/Admin', (req, res) => {
   res.render('Admin', {isLogin: true});
 });
@@ -26,7 +22,6 @@ router.get('/profile', (req, res) => {
 router.get('/account', (req, res) => {
  res.render('account', {isLogin: true});
 });
-=======
 router.get('/admin', (req, res) => {
   res.render('admin');
 });
@@ -56,6 +51,5 @@ router.get('/payment', (req, res) => {
 router.get('/payment/qr', (req, res) => {
   res.render('qr', {isLogin: true});
 })
->>>>>>> home
 
 module.exports = router;
