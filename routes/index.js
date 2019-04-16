@@ -22,8 +22,8 @@ router.post('/checklogin',async (req, res) => {
     let dataSanBong = await SanBong.find({})
     
     
-    if (myData.username == 'admin' || myData.username == 'admin01') {
-      if (myData.password == 'admin') {
+    if (myData.username == 'admin' || myData.username == 'user@gmail.com') {
+      if (myData.password == 'admin' || myData.password == '123') {
         let info = {
           acp: 1,
         }
@@ -60,22 +60,20 @@ router.post('/checklogin',async (req, res) => {
   })
 // api đặt sân 
 
-router.post('/datsan', async(req, res, next) => {
+router.post('/payment', async(req, res, next) => {
   let myData = req.body
 
   let info = {
     sanbong : myData.loaisan,
     ngayThue:myData.ngay,
     dattu:myData.gio,
-    thoiluongThue:myData.thoiluong
+    thoiluongThue:myData.thoiluong,
+    email: "user@gmail.com",
   }
-  
   var t = new lichDatSan(info)
-  
-  
   let dataBeforSave = await t.add_schedule()
-  res.json(dataBeforSave)
-  
+  // res.json(dataBeforSave)
+  res.render('payment', {isLogin: true, data: dataBeforSave});
 })
 // 
 router.get('/user', (req, res) => {
