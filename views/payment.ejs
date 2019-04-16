@@ -6,47 +6,65 @@
 
   <div class="container mt-5 pt-5">
     <div>
-      <form action="/payment" method="post">
+      <form action="/payment" method="POST">
         <div class="row">
-          <div class="col-4">
+
+          <!-- User info -->
+          <div class="col-12 col-md-4">
             <h5>Thông tin liên lạc:</h5>
             <hr>
             <div class="form-row">
-              <div class="form-group form-col-6">
-                <label for="email">Email:</label>
-                <input type="text" id="email" class="form-control" placeholder="email_or_SDT_from_db_if_exist">
-              </div>
-              <div class="form-group form-col-6">
-                <label for="phoneNumber">SDT:</label>
-                <input type="text" id="phoneNumber" class="form-control">
-              </div>
+              <% if(data.email){ %>
+                <div class="form-group col-12">
+                  <label><span class="font-weight-bold">Email:</span> <%= data.email %> </label>
+                </div>
+              <% } else { %>
+                <div class="form-group form-col-6">
+                  <label for="email">Email:</label>
+                  <input type="text" id="email" class="form-control" placeholder="Nhập email để đặt sân">
+                </div>
+              <% } %>
+              <% if(data.sdt){ %>
+                <div class="form-group col-12">
+                  <label><span class="font-weight-bold">SDT:</span> <%= data.sdt %> </label>
+                </div>
+              <% } else { %>
+                <div class="form-group form-col-6">
+                  <label for="phoneNumber">SDT:</label>
+                  <input type="text" id="phoneNumber" class="form-control" placeholder="Yêu cầu số điện thoại để xác minh">
+                </div>
+              <% } %>
             </div>
           </div>
-          <div class="col-4">
+
+          <!-- Field info -->
+          <div class="col-6 col-md-4">
             <h5>Thông tin thanh toán:</h5>
             <hr>
-            <h6 class="d-block">Sân:</h6><p> <%= data.fieldName %></p>
-            <p>Thời gian: <%= data.time %></p>
-            <p>Ngày: <%= data.date %></p>
+            <p><span class="mr-1 font-weight-bold">Sân:</span> <%= data.fieldName %></p>
+            <p><span class="mr-1 font-weight-bold">Thời gian:</span> <%= data.time %></p>
+            <p><span class="mr-1 font-weight-bold">Ngày:</span> <%= data.date %></p>
           </div>
-          <div class="col-4">
+
+          <!-- Payment way -->
+          <div class="col-6 col-md-4">
             <h5>Thanh toán:</h5>
             <hr>
             <div class="form-check mt-1">
-              <input class="form-check-input" type="radio" name="exampleRadios" id="momo" value="option1" checked>
+              <input class="form-check-input" type="radio" name="mono" id="momo" value="option1" checked>
               <label class="form-check-label" for="momo">
                 Mono
               </label>
             </div>
             <div class="form-check mt-1">
-              <input class="form-check-input" type="radio" name="exampleRadios" id="zalopay" value="option2">
+              <input class="form-check-input" type="radio" name="zalopay" id="zalopay" value="option2">
               <label class="form-check-label" for="zalopay">
                 Zalopay
               </label>
             </div>
           </div>
         </div>
-        <button type="submit" class="primary-btn py-3 text-uppercase d-block mx-auto mt-5 mb-2">Thanh toan</button>
+        <button type="submit" class="primary-btn py-3 text-uppercase d-block mx-auto mt-5 mb-2">Thanh toán</button>
       </form>
     </div>
   </div>
