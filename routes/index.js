@@ -34,6 +34,11 @@ router.get('/payment', (req, res) => {
     time: "16:00"
   }
   res.render('payment', {isLogin: true, data: data});
+  // res.json({isLogin: true, data: data});
 });
+
+router.get('/payment/qr', (req, res) => {
+  res.render('qr', {isLogin: true});
+})
 
 module.exports = router;
