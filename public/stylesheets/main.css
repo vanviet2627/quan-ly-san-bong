@@ -2008,18 +2008,18 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Nav Menu Arrows */
-.sf-arrows .sf-with-ul {
+/*.sf-arrows .sf-with-ul {
   padding-right: 30px;
-}
+}*/
 
-.sf-arrows .sf-with-ul:after {
+/*.sf-arrows .sf-with-ul:after {
   content: "\f107";
   position: absolute;
   right: 15px;
   font-family: FontAwesome;
   font-style: normal;
   font-weight: normal;
-}
+}*/
 
 .sf-arrows ul .sf-with-ul:after {
   content: "\f105";

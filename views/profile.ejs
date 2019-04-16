@@ -4,45 +4,43 @@
   <% include layouts/head %>
   <body>
     <!-- Navbar -->
-    <% include layouts/header %>
-		<div class="container-fluid">
-			<div>
-				<p><h5>Lý Lịch Cá Nhân</h5></p>
-			</div>
+		<% include layouts/header %>
+		
+		<div class="container mt-5 pt-5">
 			<div class="container-fluid">
+				<div class="d-flex justify-content-around align-items-center">
+					<h4 class="mb-3">Lý lịch cá nhân:</h4>
+					<a href="" class="d-inline-block ml-auto font-weight-bold text-black" data-toggle="modal" data-target="#chinhsua">
+						<i class="fa fa-edit mr-1"></i>Chỉnh sửa
+					</a>
+				</div>
 				<ul class="list-group">
 					<li class="list-group-item">
-						<label class="control-label">Họ và Tên :</label>
+						<label class="m-0"><span class="font-weight-bold">Họ tên:</span>  </label>
 					</li>
 					<li class="list-group-item">
-						<label class="control-label">Email :</label>
+						<label class="m-0"><span class="font-weight-bold">Email:</span>  </label>
 					</li>
 					<li class="list-group-item">
-							<label class="control-label">Giới Tính :</label>
+							<label class="m-0"><span class="font-weight-bold">Giới tính:</span>  </label>
 					</li>
 					<li class="list-group-item">
-							<label class="control-label">Ngày Sinh :</label>
+							<label class="m-0"><span class="font-weight-bold">Ngày sinh:</span>  </label>
 					</li>
 					<li class="list-group-item">
-							<label class="control-label">Tuổi :</label>
+							<label class="m-0"><span class="font-weight-bold">Tuổi:</span>  </label>
 					</li>
 					<li class="list-group-item">
-							<label class="control-label">Địa Chỉ :</label>
+							<label class="m-0"><span class="font-weight-bold">Địa chỉ:</span>  </label>
 					</li>
 					<li class="list-group-item">
-							<label class="control-label">Số Điện Thoại :</label>
+							<label class="m-0"><span class="font-weight-bold">SDT:</span>  </label>
 					</li>
-					
 				</ul>
+				<p class="d-inline-block pt-3 font-italic "> Lưu ý :Vui lòng bổ sung đây đủ thông tin khách hàng</p>	
 			</div>
-			<p></p>
-			<p> Lưu ý :Vui lòng bổ sung đây đủ thông tin khách hàng</p>	
-		 </div>
-<!--Chinh sua ly lich ca nhan-->
-					 <div class="container-fluid">
-				<button type="button" class="btn btn-dark float-right" data-toggle="modal" data-target="#chinhsua">
-						Chỉnh sửa lý lịch cá nhân
-					</button>
+	<!--Chinh sua ly lich ca nhan-->
+			<div class="container-fluid">
 					<div class="modal fade" id="chinhsua">
 						<div class="modal-dialog">
 							<div class="modal-content">
@@ -96,9 +94,10 @@
 								
 							</div>
 						</div>
-					</div>
-					 </div>
-		</section>
+				</div>
+			</div>
+		</div>
+		
 		<!-- footer -->
 		<% include layouts/footer %>
     <!-- Script -->
