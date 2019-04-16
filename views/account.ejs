@@ -5,16 +5,19 @@
   <body>
     <!-- Navbar -->
     <% include layouts/header %>
-      <section class="banner-area bg" id="user">
+      <section id="user">
 <!--Ly lich ca nhan-->
 		   <div class="container-fluid">
 				<div>
-				  <p><h6>Lý Lịch Cá Nhân</h6></p>
+				  <p><h5>Lý Lịch Cá Nhân</h5></p>
 				</div>
 				<div class="container-fluid">
 					<ul class="list-group">
 						<li class="list-group-item">
 							<label class="control-label">Họ và Tên :</label>
+						</li>
+						<li class="list-group-item">
+							<label class="control-label">Email :</label>
 						</li>
 						<li class="list-group-item">
 								<label class="control-label">Giới Tính :</label>
@@ -26,21 +29,20 @@
 								<label class="control-label">Tuổi :</label>
 						</li>
 						<li class="list-group-item">
-								<label class="control-label">Công Việc :</label>
-						</li>
-						<li class="list-group-item">
 								<label class="control-label">Địa Chỉ :</label>
 						</li>
 						<li class="list-group-item">
 								<label class="control-label">Số Điện Thoại :</label>
 						</li>
+						
 					</ul>
 				</div>
-				<p> Lưu ý :Vui lòng điền đây đủ thông tin khách hàng</p>	
+				<p></p>
+				<p> Lưu ý :Vui lòng bổ sung đây đủ thông tin khách hàng</p>	
 			 </div>
 <!--Chinh sua ly lich ca nhan-->
              <div class="container-fluid">
-					<button type="button" class="btn btn-dark mx-auto	" data-toggle="modal" data-target="#chinhsua">
+					<button type="button" class="btn btn-dark float-right" data-toggle="modal" data-target="#chinhsua">
 							Chỉnh sửa lý lịch cá nhân
 						</button>
 						<div class="modal fade" id="chinhsua">
