@@ -157,7 +157,7 @@
 						      </select>
 						    </div>
 						  </div>
-						  <button type="button" class="primary-btn py-2 text-uppercase d-block mx-auto mt-1">Tìm sân</button>
+						  <button type="button" class="primary-btn py-2 text-uppercase d-block mx-auto mt-1">Đặt sân</button>
 						</form>
 					</div>
 				</div>
@@ -204,6 +204,15 @@
 	
 	<% include layouts/footer %>
 	<% include layouts/script %>
+	<script>
+		  ($(window).scroll(function() {
+		    if ($(this).scrollTop() > 100) {
+      		$('#header').addClass('header-scrolled');
+				} else {
+					$('#header').removeClass('header-scrolled');
+				}
+  		}))
+	</script>
 </body>
 </html>
 

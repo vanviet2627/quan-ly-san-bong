@@ -24,8 +24,16 @@ router.post('/signup', (req, res) => {
 });
 
 router.get('/searchfield', (req, res) => {
-  res.render('searchField', {isLogin: false});
+  res.render('schedule', {isLogin: false});
 });
 
+router.get('/payment', (req, res) => {
+  let data = {
+    fieldName: "Sân A",
+    date: "20/4/2019",
+    time: "16:00"
+  }
+  res.render('payment', {isLogin: true, data: data});
+});
 
 module.exports = router;

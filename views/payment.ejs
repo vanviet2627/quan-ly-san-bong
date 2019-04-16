@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="vi" class="no-js">
+<% include layouts/head %>
+<body>
+	<% include layouts/header %>
+
+  <div class="container mt-5 pt-5">
+    <div>
+      <form action="/payment" method="post">
+        <h5>Thông tin liên lạc:</h5>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="text" id="email" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="phoneNumber">Email:</label>
+          <input type="text" id="phoneNumber" class="form-control">
+        </div>
+        <hr>
+        <div>
+          <h5>Thông tin thanh toán:</h5>
+          <h6>Sân: <% data.fieldName %></h6>
+          <h6>Thời gian: <% data.time %></h6>
+          <h6>Ngày: <% data.date %></h6>
+          <hr>
+          <h6>Thanh toán:</h6>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <input id="online" type="radio" aria-label="Radio button for following text input">
+              </div>
+            </div>
+            <label for="online"></label>
+          </div>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <input id="offline" type="radio" aria-label="Radio button for following text input">
+              </div>
+            </div>
+            <label for="offline"></label>
+          </div>
+
+        </div>
+      </form>
+    </div>
+  </div>
+	
+	<% include layouts/footer %>
+	<% include layouts/script %>
+    <script>
+      $('#header').addClass('header-scrolled');
+    </script>
+</body>
+</html>
