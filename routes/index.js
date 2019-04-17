@@ -60,7 +60,7 @@ router.post('/checklogin',async (req, res) => {
   })
 // api đặt sân 
 
-router.post('/payment', async(req, res, next) => {
+router.post('/datsan', async(req, res, next) => {
   let myData = req.body
 
   let info = {
