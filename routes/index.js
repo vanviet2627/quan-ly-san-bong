@@ -32,7 +32,7 @@ router.post('/checklogin',async (req, res) => {
         res.json(info)
       } else {
         let info = {
-          mess: "tài khoản, mật khẩu không đúng . Vui lòng Kiểm Tra lại",
+          mess: "Tài khoản, mật khẩu không đúng. Vui lòng kiểm tra lại",
           acp: 0
         }
         res.json(info)
@@ -40,7 +40,7 @@ router.post('/checklogin',async (req, res) => {
 
     } else {
       let info = {
-        mess: "tài khoản, mật khẩu không đúng . Vui lòng Kiểm Tra lại",
+        mess: "Tài khoản, mật khẩu không đúng. Vui lòng kiểm tra lại",
         acp: 0
       }
       res.json(info)
