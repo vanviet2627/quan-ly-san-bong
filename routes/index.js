@@ -12,7 +12,11 @@ router.get('/user', (req, res) => {
 });
 
 router.get('/admin', (req, res) => {
-  res.render('admin', {isLogin: true});
+  res.render('admin', {isLogin: false});
+});
+
+router.get('/adminPage', (req, res) => {
+  res.render('adminPage', {isLogin: true});
 });
 
 router.post('/signin', (req, res) => {
