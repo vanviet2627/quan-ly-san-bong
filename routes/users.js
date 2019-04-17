@@ -6,7 +6,11 @@ var router = express.Router();
 //   });
   
 router.get('/account', (req, res) => {
-  res.render('account', {isLogin: true});
+  res.render('account', {
+    isLogin: true,
+    info: {},
+    data : {}
+                        });
 });
 
 router.get('/signout', (req, res) => {

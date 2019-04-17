@@ -77,7 +77,9 @@ router.post('/payment', async(req, res, next) => {
 // 
 router.get('/user', (req, res) => {
   res.render('User', {
-    isLogin: true
+    isLogin: true,
+    info: {},
+    data : null
   });
 });
 
