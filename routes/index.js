@@ -27,7 +27,7 @@ router.post('/checklogin',async (req, res) => {
         let info = {
           acp: 1,
         }
-        res.render('index', {
+        res.render('User', {
           isLogin: true,
           info: {},
           data: dataSanBong
