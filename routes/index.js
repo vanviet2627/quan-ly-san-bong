@@ -61,6 +61,7 @@ router.get('/s/',async(req,res)=>{
 })
 router.post('/payment', async(req, res, next) => {
   let myData = req.body
+  console.log(myData);
   
   let info = {
     sanbong : myData.loaisan,
@@ -75,11 +76,12 @@ router.post('/payment', async(req, res, next) => {
   res.render('payment', {isLogin: true, data: dataBeforSave});
 })
 // 
-router.get('/user', (req, res) => {
+router.get('/user',async (req, res) => {
+  let dataSanBong = await SanBong.find({})
   res.render('User', {
     isLogin: true,
     info: {},
-    data : null
+    data : dataSanBong
   });
 });
 
