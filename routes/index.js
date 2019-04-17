@@ -27,7 +27,7 @@ router.post('/checklogin',async (req, res) => {
         let info = {
           acp: 1,
         }
-        res.render('index', {
+        res.render('User', {
           isLogin: true,
           info: {},
           data: dataSanBong
@@ -39,7 +39,8 @@ router.post('/checklogin',async (req, res) => {
         }
         res.render('index', {
           info: info,
-          isLogin: false
+          isLogin: false,
+          data :null
         })
       }
 
@@ -50,7 +51,8 @@ router.post('/checklogin',async (req, res) => {
       }
       res.render('index', {
         info: info,
-        isLogin: false
+        isLogin: false,
+        data :null
       })
     }
   })
@@ -60,9 +62,9 @@ router.post('/checklogin',async (req, res) => {
   })
 // api đặt sân 
 
-router.post('/payment', async(req, res, next) => {
+router.post('/datsan', async(req, res, next) => {
   let myData = req.body
-
+  
   let info = {
     sanbong : myData.loaisan,
     ngayThue:myData.ngay,
@@ -72,7 +74,7 @@ router.post('/payment', async(req, res, next) => {
   }
   var t = new lichDatSan(info)
   let dataBeforSave = await t.add_schedule()
-  // res.json(dataBeforSave)
+
   res.render('payment', {isLogin: true, data: dataBeforSave});
 })
 // 
@@ -119,12 +121,12 @@ router.get('/payment', (req, res) => {
     date: "20/4/2019",
     time: "16:00",
     email: "asd@gmail.com",
-    // sdt: "0968222222"
+     sdt: "0968222222"
   }
   res.render('payment', {isLogin: true, data: data});
 });
 
-router.post('/payment', (req, res) => {
+router.post('/payment_viet', (req, res) => {
   let info = {
     phoneNumber: req.body.phoneNumber,
     typeOfEWallet: req.body.exampleRadios
