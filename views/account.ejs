@@ -5,105 +5,72 @@
   <body>
     <!-- Navbar -->
     <% include layouts/header %>
-      <section id="user">
-<!--Ly lich ca nhan-->
-		   <div class="container-fluid">
-				<div>
-				  <p><h5>Lý Lịch Cá Nhân</h5></p>
-				</div>
-				<div class="container-fluid">
-					<ul class="list-group">
-						<li class="list-group-item">
-							<label class="control-label">Họ và Tên :</label>
-						</li>
-						<li class="list-group-item">
-							<label class="control-label">Email :</label>
-						</li>
-						<li class="list-group-item">
-								<label class="control-label">Giới Tính :</label>
-						</li>
-						<li class="list-group-item">
-								<label class="control-label">Ngày Sinh :</label>
-						</li>
-						<li class="list-group-item">
-								<label class="control-label">Tuổi :</label>
-						</li>
-						<li class="list-group-item">
-								<label class="control-label">Địa Chỉ :</label>
-						</li>
-						<li class="list-group-item">
-								<label class="control-label">Số Điện Thoại :</label>
-						</li>
-						
-					</ul>
-				</div>
-				<p></p>
-				<p> Lưu ý :Vui lòng bổ sung đây đủ thông tin khách hàng</p>	
-			 </div>
-<!--Chinh sua ly lich ca nhan-->
-             <div class="container-fluid">
-					<button type="button" class="btn btn-dark float-right" data-toggle="modal" data-target="#chinhsua">
-							Chỉnh sửa lý lịch cá nhân
-						</button>
-						<div class="modal fade" id="chinhsua">
-							<div class="modal-dialog">
-								<div class="modal-content">
-									<div class="modal-header">
-										<h4 class="modal-title">Thay đổi lý lịch cá nhân</h4>
-									</div>
-									<div class="modal-body">
-										<div><h5>Lý Lịch Cá Nhân</h5></div>
-										<div>
-											 <div class="form-group">
-													<label for="name">Họ và Tên</label>
-													<input type="name" class="form-control" id="name" placeholder="Nhập" name="name">
-											 </div>
-											 <div class="form-group">
-													<label for="sex">Giới Tính</label>
-													<input type="sex" class="form-control" id="sex" placeholder="Nhập" name="sex">
-											 </div>
-											 <div class="form-group">
-													<label for="date">Ngày Sinh</label>
-													<input type="date" class="form-control" id="date" placeholder="Nhập" name="date">
-											 </div>
-											 <div class="form-group">
-													<label for="age">Tuổi</label>
-													<input type="age" class="form-control" id="age" placeholder="Nhập" name="age">
-											 </div>
-											 <div class="form-group">
-													<label for="work">Công Việc</label>
-													<input type="work" class="form-control" id="work" placeholder="Nhập" name="work">
-											 </div>
-											 <div class="form-group">
-													<label for="add">Địa Chỉ</label>
-													<input type="add" class="form-control" id="add" placeholder="Nhập" name="add">
-											 </div>
-											 <div class="form-group">
-													<label for="number1">Số Điện Thoại</label>
-													<input type="number1" class="form-control" id="number1" placeholder="Nhập" name="number1">
-											 </div>
-											 <div class="form-group">
-													<label for="date">Ngày đặt sân</label>
-													<input type="date" class="form-control" id="date" placeholder="Nhập" name="date">
-											 </div>
-											 <div class="form-group">
-													<label for="time">Thời gian đặt sân</label>
-													<input type="time" class="form-control" id="time" placeholder="Nhập" name="time">
-											 </div>
-										</div>
-									</div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-danger" data-dismiss="modal">Trở Về</button>
-									</div>
-									
-								</div>
-							</div>
+<!--Đổi mật khẩu-->
+             <div class="container mt-5 pt-5" id="#checkRePassword">
+				 <div class="container-fuild">
+						<div class="d-flex justify-content-around align-items-center">
+							<h4 class="mb-3">Đổi mật khẩu:</h4>
 						</div>
+							<div class="form-group">
+								<label>Mật Khẩu cũ</label>
+								<input class="form-control" id="password" name="password" type="password" placeholder="Vui lòng nhập mật khẩu cũ">
+							</div>
+							<div class="form-group">
+								<label>Mật Khẩu mới</label>
+								<input class="form-control" id="newPassword" name="password" type="password" placeholder="Vui lòng nhập mật khẩu mới">
+							</div>
+							<div class="form-group">
+								<label>Xác nhận lại mật khẩu</label>
+								<input class="form-control" id="reNewPassword" name="password" type="password" placeholder="Vui lòng nhập lại mật khẩu mới	">
+							</div>
+							<div class="modal-footer d-flex justify-content-center">
+								<button onclick="login()" class="btn btn-success mr-4 px-4">Xác nhận</button>
+								<button type="button" class="btn btn-danger" data-dismiss="modal">Trờ về</button>
+							</div>		
+					</div>
              </div>
-		  </section>
-		<!-- footer -->
-		<% include layouts/footer %>
+
+	<!-- footer -->
+	<% include layouts/footer %>
     <!-- Script -->
-    <% include layouts/script %>
+	<% include layouts/script %>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$("#checkRePassword").validate({
+					rules: {
+						password: {
+							required: true,
+							minlength: 5
+						},
+						newPassword: {
+							required: true,
+							minlength: 5
+						},
+						reNewPassword: {
+							required: true,
+							minlength: 5,
+							equalTo: "#newPassword"
+						},
+					},
+					messages: {
+						password: {
+							required: "Vui lòng nhập mật khẩu cũ",
+							minlength: "Vui lòng nhập ít nhất 5 kí tự"
+						},
+						newPassword: {
+							required: "Vui lòng nhập mật khẩu mới",
+							minlength: "Vui lòng nhập ít nhất 5 kí tự"
+						},
+						reNewPassword: {
+							required: "Vui lòng nhập lại mật khẩu mới",
+							minlength: "Vui lòng nhập ít nhất 5 kí tự",
+							equalTo: "Mật khẩu không trùng"
+						},
+					}
+				});
+	});
+	</script>
+
+
   </body>
 </html>

@@ -29,7 +29,15 @@ router.post('/checklogin',async (req, res) => {
         let info = {
           acp: 1,
         }
+<<<<<<< HEAD
         res.json(info)
+=======
+        res.render('User', {
+          isLogin: true,
+          info: {},
+          data: dataSanBong
+        })
+>>>>>>> e4427b3828d0577ac66eb573d51b6c5a0c8d0d62
       } else {
         let info = {
           mess: "tài khoản, mật khẩu không đúng . Vui lòng Kiểm Tra lại",
@@ -51,6 +59,7 @@ router.post('/checklogin',async (req, res) => {
       res.redirect('/')    
   })
 // api đặt sân 
+<<<<<<< HEAD
 router.get('/s/',async(req,res)=>{
   let dataSanBong = await SanBong.find({})
   res.render('index', {
@@ -60,6 +69,10 @@ router.get('/s/',async(req,res)=>{
   })
 })
 router.post('/payment', async(req, res, next) => {
+=======
+
+router.post('/datsan', async(req, res, next) => {
+>>>>>>> e4427b3828d0577ac66eb573d51b6c5a0c8d0d62
   let myData = req.body
   
   let info = {
