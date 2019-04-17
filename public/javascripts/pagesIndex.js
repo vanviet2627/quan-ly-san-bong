@@ -23,7 +23,7 @@ $(document).ready(function () {
                 if(response.acp == 0){
                     $('#thongbao').html('<div class="alert alert-danger" role="alert">'+response.mess+'</div>');
                 }else{
-                    window.location.href = '/s/';
+                    window.location.href = '/user/';
                 }
             }
         });
