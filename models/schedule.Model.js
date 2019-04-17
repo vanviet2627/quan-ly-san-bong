@@ -60,7 +60,8 @@ module.exports = class lichDatSan_Database{
             let t = await myData.save();
             // update lại trang thái sân từ 0 -> 1
             await Sanbong.findByIdAndUpdate({_id : t._id},{status : 1})
-            return t;
+            let show_data = await lichDatSan.findOne({_id :t.id}).populate('sanbong')
+            return show_data;
         }
         
     }

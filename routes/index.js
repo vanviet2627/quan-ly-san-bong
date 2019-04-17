@@ -39,7 +39,8 @@ router.post('/checklogin',async (req, res) => {
         }
         res.render('index', {
           info: info,
-          isLogin: false
+          isLogin: false,
+          data :null
         })
       }
 
@@ -50,7 +51,8 @@ router.post('/checklogin',async (req, res) => {
       }
       res.render('index', {
         info: info,
-        isLogin: false
+        isLogin: false,
+        data :null
       })
     }
   })
@@ -62,7 +64,7 @@ router.post('/checklogin',async (req, res) => {
 
 router.post('/datsan', async(req, res, next) => {
   let myData = req.body
-
+  
   let info = {
     sanbong : myData.loaisan,
     ngayThue:myData.ngay,
@@ -72,7 +74,7 @@ router.post('/datsan', async(req, res, next) => {
   }
   var t = new lichDatSan(info)
   let dataBeforSave = await t.add_schedule()
-  // res.json(dataBeforSave)
+
   res.render('payment', {isLogin: true, data: dataBeforSave});
 })
 // 
