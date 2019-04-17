@@ -6,7 +6,7 @@
 
   <div class="container mt-5 pt-5">
     <div>
-      <form action="/payment" method="POST">
+      <form action="/payment_viet" method="POST">
         <div class="row">
 
           <!-- User info -->
@@ -46,7 +46,7 @@
             <p><span class="mr-1 font-weight-bold">Thời gian:</span> <%= data.time %></p>
             <p><span class="mr-1 font-weight-bold">Trong:</span> <%= data.lasting %> giờ</p> -->
 
-            <p><span class="mr-1 font-weight-bold">Sân:</span> <%= data.sanbong.loaisan %> Người</p>
+            <p><span class="mr-1 font-weight-bold">Sân:</span> <%if(data.sanbong){%><%= data.sanbong.loaisan %> Người<%}%></p>
             <p><span class="mr-1 font-weight-bold">Ngày:</span> <%= data.ngayThue %></p>
             <p><span class="mr-1 font-weight-bold">Thời gian:</span> <%= data.dattu %></p>
             <p><span class="mr-1 font-weight-bold">Trong:</span> <%= data.thoiluongThue %> giờ</p>
