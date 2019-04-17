@@ -121,12 +121,12 @@ router.get('/payment', (req, res) => {
     date: "20/4/2019",
     time: "16:00",
     email: "asd@gmail.com",
-    // sdt: "0968222222"
+     sdt: "0968222222"
   }
   res.render('payment', {isLogin: true, data: data});
 });
 
-router.post('/payment', (req, res) => {
+router.post('/payment_viet', (req, res) => {
   let info = {
     phoneNumber: req.body.phoneNumber,
     typeOfEWallet: req.body.exampleRadios
