@@ -18,6 +18,8 @@ router.get('/', (req, res, next) => {
 
 router.post('/checklogin',async (req, res) => {
     let myData = req.body
+    console.log(myData);
+    
    
     let dataSanBong = await SanBong.find({})
     
@@ -27,21 +29,13 @@ router.post('/checklogin',async (req, res) => {
         let info = {
           acp: 1,
         }
-        res.render('index', {
-          isLogin: true,
-          info: {},
-          data: dataSanBong
-        })
+        res.json(info)
       } else {
         let info = {
           mess: "tài khoản, mật khẩu không đúng . Vui lòng Kiểm Tra lại",
           acp: 0
         }
-        res.render('index', {
-          info: info,
-          isLogin: false,
-          data :null
-        })
+        res.json(info)
       }
 
     } else {
@@ -49,11 +43,7 @@ router.post('/checklogin',async (req, res) => {
         mess: "tài khoản, mật khẩu không đúng . Vui lòng Kiểm Tra lại",
         acp: 0
       }
-      res.render('index', {
-        info: info,
-        isLogin: false,
-        data :null
-      })
+      res.json(info)
     }
   })
   .get('/checklogin',async (req, res) => {
@@ -61,7 +51,14 @@ router.post('/checklogin',async (req, res) => {
       res.redirect('/')    
   })
 // api đặt sân 
-
+router.get('/s/',async(req,res)=>{
+  let dataSanBong = await SanBong.find({})
+  res.render('index', {
+    isLogin: true,
+    info: {},
+    data: dataSanBong
+  })
+})
 router.post('/payment', async(req, res, next) => {
   let myData = req.body
   

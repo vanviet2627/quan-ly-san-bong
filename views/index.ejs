@@ -17,12 +17,15 @@
 	        </button>
 	      </div>
 	      <div class="modal-body mx-3">
-				  <% if(info.mess){%>
+				<div id='thongbao'>
+					<% if(info.mess){%>
 						<div class="alert alert-danger" role="alert">
 							<%= info.mess%>
 						</div>
 					<%}%>
-	        <form id='login' action="/checklogin" method="POST">
+				</div>
+				  
+	        <form id='login'>
 	        	<div class="form-group">
 							<label for="inputEmail">Email hoặc SĐT:</label>
 							<input type="text" class="form-control" id="inputTypeOfField" name="username">
