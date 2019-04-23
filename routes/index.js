@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
-const Pitch = require('../models/pitches.Model').Sanbong
+const Pitch = require('../models/pitches.Model').PitchModel
 const Schedule = require('../models/schedule.Model')
+const User = require('../models/user.Model');
 
 /* Get Home Page. */
 router.get('/', (req, res, next) => {
@@ -30,10 +31,10 @@ router.post('/payment', async(req, res, next) => {
   let info = req.body;
   let bill = {
     sanbong: info.loaisan,
+    renter: "user@gmail.com",
     ngayThue: info.ngay,
     dattu: info.gio,
     thoiluongThue: info.thoiluong,
-    email: "user@gmail.com",
   }
   var newSchedule = new Schedule(bill)
   let dataBeforSave = await newSchedule.add_schedule()
@@ -49,6 +50,32 @@ router.post('/payment/ewallet', (req, res) => {
 // ==========================================
 //                   User
 // ==========================================
+
+router.post('/login',async (req, res) => {
+  let info = {
+    email: req.body.email,
+    password: req.body.password
+  }
+  let dataSanBong = await Pitch.find({})
+  new User(info).findOneUser()
+    .then(rs => {
+      // User is not exist
+      if(rs === null) { res.json({"exist": false, err}) }
+
+      // Check passwd
+      // Assume that password has been encrypted =))
+      if(info.password === rs.password) {
+        res.json({"acp": 1, email: rs.email});
+      } else {
+        res.json({"acp": 0, "mess": "Tài khoản hoặc mật khẩu không đúng."});
+      }
+    }).catch(err => {
+      res.json({"acp": 0, "mess": "Tài khoản hoặc mật khẩu không đúng."});
+    })
+})
+.get('/login', async (req, res) => {
+    res.redirect('/')    
+})
 
 // api đặt sân 
 router.get('/s/', async(req, res)=>{
@@ -74,12 +101,28 @@ router.get('/admin', (req, res) => {
   res.render('admin');
 });
 
-router.post('/signin', (req, res) => {
-  res.redirect('/');
+router.post('/signup', (req, res) => {
+  let info = {
+    email: req.body.email,
+    password: req.body.password
+  }
+  let newUser = new User(info);
+  let rs = newUser.addUser();
+  rs.then(() => {
+    res.json({"success": true});
+  }).catch(err => {
+    res.json({"sucess": false, "err": err});
+  })
 });
 
-router.post('/signup', (req, res) => {
-  res.redirect('/');
+router.get('/alluser', (req, res) => {
+  let user = new User();
+  user.getAllUser()
+    .then(users => {
+      res.json(users);
+    }).catch(err => {
+      res.json(err)
+    })
 });
 
 router.get('/searchfield', (req, res) => {
@@ -106,33 +149,6 @@ router.get('/account', (req, res) => {
   });
 });
 
-router.post('/checklogin',async (req, res) => {
-  let myData = req.body
-  console.log(myData);
-  let dataSanBong = await Pitch.find({})
-  if (myData.username == 'admin' || myData.username == 'user@gmail.com') {
-    if (myData.password == 'admin' || myData.password == '123') {
-      let info = {
-        acp: 1,
-      }
-      res.json(info)
-    } else {
-      let info = {
-        mess: "Tài khoản hoặc mật khẩu không đúng.",
-        acp: 0
-      }
-      res.json(info)
-    }
-  } else {
-    let info = {
-      mess: "Tài khoản hoặc mật khẩu không đúng.",
-      acp: 0
-    }
-    res.json(info)
-  }
-})
-.get('/checklogin', async (req, res) => {
-    res.redirect('/')    
-})
+
 
 module.exports = router;

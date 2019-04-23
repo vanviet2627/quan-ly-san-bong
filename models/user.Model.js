@@ -6,7 +6,7 @@ let userSchema = Schema({
     email: {
         type: String,
         required: true,
-        unique: true
+        // unique: true
     },
     password: {
         type: String,
@@ -14,49 +14,36 @@ let userSchema = Schema({
     },
     userName: {
         type: String,
-        unique: true
+        // unique: true
     },
-    fullname: String,
-    birthday: Date,
-    registerDate: { type: Date, default: Date.now },
-    gender: {type: Number, default: 1},
-    profilePicture: String,
     phoneNumber: Number,
-    userRole: { type: Number, default: 1 },
-    isActive: { type: Boolean, default: true },
-    listFriends: [{ type: Schema.Types.ObjectId, ref: ModelName }]
+    userType: { type: String, default: "member" }
 })
 
-// User role
-let userRole = [
-    { id: 0, name: 'banned' },
-    { id: 1, name: 'member' },
-    { id: 3, name: 'admin' },
-    { id: 4, name: 'moderator' }
-]
+class UserClass {
+    constructor(info){
+        this.info = info;
+    }
+    async addUser() {
+        if(this.info){
+            let newUser = new UserModel(this.info);
+            return await newUser.save();
+        }
+    }
+    async findOneUser() {
+        if(this.info){
+            console.log(this.info)
+            return await UserModel.findOne({email: this.info.email});
+        }
+    }
+    async getAllUser() {
+        return await UserModel.find({});
+    }
+}
 
-// Notification
-
-// Login google
-
-// Login facebook
-
-// class UserClass {
-//     static createUserWithEmail(info, callback) {
-//         if(!info || !info.email || !info.password){
-            
-//         }
-//     }
-// }
-
-
-
-userSchema.loadClass(UserClass)
-let ModelName = 'UserModel';
+let ModelName = 'User';
 let UserModel = mongoose.model(ModelName, userSchema);
 
-module.exports = UserModel;
+module.exports.UserModel = UserModel;
 module.exports.ModelName = ModelName;
-module.exports = {
-
-}
+module.exports = UserClass;

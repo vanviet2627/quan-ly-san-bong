@@ -3,9 +3,7 @@
 <% include layouts/head %>
 <body>
 	<% include layouts/header %>
-
-
-	 <input type="hidden" id="islogin" value="<%= isLogin%>">
+	<input type="hidden" id="islogin" value="<%= isLogin%>">
 	<!-- Start signin Modal area -->
 	<div class="modal fade" id="signinModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	  <div class="modal-dialog" role="document">
@@ -27,12 +25,12 @@
 				  
 	        <form id='login'>
 	        	<div class="form-group">
-							<label for="inputEmail">Email hoặc SĐT:</label>
-							<input type="text" class="form-control" id="inputTypeOfField" name="username" autofocus="">
+							<label for="email">Email hoặc SĐT:</label>
+							<input type="text" class="form-control" id="email" name="email" autofocus>
 						</div>
 						<div class="form-group">
-							<label for="inputPassword">Mật khẩu:</label>
-							<input type="password" class="form-control" id="inputPassword" name="password">
+							<label for="password">Mật khẩu:</label>
+							<input type="password" class="form-control" id="password" name="password">
 						</div>
 						<button type="submit" class="primary-btn py-2 text-uppercase d-block mx-auto">Đăng nhập</button>
 	        </form>
