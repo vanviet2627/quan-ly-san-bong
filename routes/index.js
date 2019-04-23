@@ -37,8 +37,14 @@ router.post('/payment', async(req, res, next) => {
     thoiluongThue: info.thoiluong,
   }
   var newSchedule = new Schedule(bill)
-  let dataBeforSave = await newSchedule.add_schedule()
-  res.render('payment', {isLogin: true, data: dataBeforSave});
+  newSchedule.add_schedule()
+    .then(rs => {
+      console.log({"RS": rs});
+      res.render('payment', {isLogin: true, data: rs});
+    }).catch(err => {
+      console.log({"ERRR": err});
+      res.render('error', {message: "ERROR 404", error: {status: err}});
+    })
 })
 
 router.post('/payment/ewallet', (req, res) => {

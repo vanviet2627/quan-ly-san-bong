@@ -103,10 +103,24 @@
 						    <div class="form-group col-md-6">
 						      <label for="inputTypeOfField">Chọn loại sân:</label>
 						      <select id="inputTypeOfField" class="form-control" name="loaisan">
-										<option>5 Người</option>
-										<option>7 Người</option>
-										<option>12 Người</option>
-						      </select>
+										<%if(data){
+											data.forEach(t => {%>
+											<option value='<%=t.id%>'>
+												<% if(t.loaisan == 5){ %>
+														5 Người
+													<% }else if(t.loaisan == 7){ %>
+														7 Người
+													<% }else{ %>
+														12 Người
+												<% } %>
+											</option>
+											<% });
+										}else{%>
+												<option>5 Người</option>
+												<option>7 Người</option>
+												<option>12 Người</option>
+										<%}%>
+									</select>
 						    </div>
 						    <div class="form-group col-md-6">
 						      <label for="date">Chọn ngày:</label>

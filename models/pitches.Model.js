@@ -7,83 +7,55 @@ var mongoosePaginate = require('mongoose-paginate');
 const Schema = mongoose.Schema;
 
 var sanbong = new Schema({
-   
-    
-    loaisan :{
+    loaisan: { // 5 nguoi || 7 nguoi || 12 nguoi
         type : Number,
-        /* 5: Sân 5 người
-           7: Sân 7 người
-           12:Sân 12 người
-        */
     },
-    
-    // path :{
-    //     type: String,
-    //     slug : ["tenSanBong"],
-    //     unique: true
-     
-    // },
-    status :{
-        // Trạng thái
-        type:Number,
-        default:0,     
-        /* Trạng thái 0 : Chưa Thuê
-                      1 : Chưa Hết thời Gian Thuê
-        */
+    status: { // (!rented) ? 0 : 1
+        type: Number,
+        default: 0,     
     },
-    renter :[
-        // Người Thuê
+    renter: [
         {type: Schema.Types.ObjectId, ref : "User"}
     ],
-    ngaytao :{
-        type : Date,
-        default:Date.now(),
+    ngaytao: {
+        type: Date,
+        default: Date.now(),
     },
-    images :{
-        type:String ,
+    images: {
+        type: String
     }
-
-
-    
 })
 
 sanbong.plugin(mongoosePaginate);
-const Sanbong = mongoose.model('Pitches', sanbong);
+const PitchModel = mongoose.model('Pitches', sanbong);
 module.exports =class Pitches_Database{
     constructor(data){
         this.data = data
     }
     async save_pitches() {
-        let myData = new Sanbong(this.data);
+        let myData = new PitchModel(this.data);
         return await myData.save()
-         
     }
     del_pitches(){
         let myData_slug = this.data.slug;
-        Sanbong.findOneAndRemove({slug : myData_slug})
-                .then(rs =>{
-                    if(rs){
-                        res.sendStatus(200).json(rs)
-                    }
-                })
-                .catch(err =>{
-                    res.sendStatus(400).json(err)
-                })
-        
+        PitchModel.findOneAndRemove({slug: myData_slug})
+            .then(rs =>{
+                if(rs){
+                    res.sendStatus(200).json(rs)
+                }
+            })
+            .catch(err =>{
+                res.sendStatus(400).json(err)
+            })
     }
     async update_pitches(){
         let myData_id = this.data.id;
-        let t =await Sanbong.findOneAndUpdate({_id : myData_id})
-
-              
+        let t = await PitchModel.findOneAndUpdate({_id : myData_id})
     }
     async show_pitches(){
         // hiện thị sân bóng chưa đặt
-       
-        let t = await Sanbong.find({
-            
-        })
+        let t = await PitchModel.find({})
         return t
     }
 }
-module.exports.Sanbong=Sanbong 
+module.exports.PitchModel=PitchModel 

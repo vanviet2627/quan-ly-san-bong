@@ -3,29 +3,29 @@ const db = require('../configs/connectDatabase');
 const mongoose = require('mongoose');
 var slug = require('mongoose-slug-updater');
 mongoose.plugin(slug);
-const Sanbong = require('../models/pitches.Model').Sanbong
+const PitchModel = require('../models/pitches.Model').PitchModel
 var mongoosePaginate = require('mongoose-paginate');
 const Schema = mongoose.Schema;
 
 var schedule= new Schema({
-    sanbong :{
+    sanbong: {
         type: Schema.Types.ObjectId,
         ref : "Pitches",
     },
-    renter :{
-        type : String,
-        default: 'admin',
+    renter: {
+        type: String,
+        default: 'user@gmail.com',
     },
-    ngayThue :{
-        type : String,
+    ngayThue: {
+        type: String,
     },
-    dattu:{
-        type : String,
+    dattu: {
+        type: String,
     },
-    thoiluongThue:{
-        type : String,
+    thoiluongThue: {
+        type: String,
     },
-    ngaytao :{
+    ngaytao: {
         type: Date,
         default : Date.now(),
     }
@@ -51,8 +51,8 @@ module.exports = class lichDatSan_Database{
             let newSchedule = new ScheduleModel(this.data)
             let t = await newSchedule.save();
             // update lại trang thái sân từ 0 -> 1
-            await Sanbong.findByIdAndUpdate({_id : t._id},{status : 1})
-            let show_data = await ScheduleModel.findOne({_id :t.id}).populate('sanbong')
+            await PitchModel.findByIdAndUpdate({_id: t._id},{status: 1})
+            let show_data = await ScheduleModel.findOne({_id: t.id}).populate('sanbong')
             return show_data;
         }
         
