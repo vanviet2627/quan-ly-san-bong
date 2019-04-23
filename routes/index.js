@@ -35,8 +35,8 @@ router.post('/payment', async(req, res, next) => {
     thoiluongThue: info.thoiluong,
     email: "user@gmail.com",
   }
-  var t = new Schedule(bill)
-  let dataBeforSave = await t.add_schedule()
+  var newSchedule = new Schedule(bill)
+  let dataBeforSave = await newSchedule.add_schedule()
   res.render('payment', {isLogin: true, data: dataBeforSave});
 })
 

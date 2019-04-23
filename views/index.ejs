@@ -105,26 +105,9 @@
 						    <div class="form-group col-md-6">
 						      <label for="inputTypeOfField">Chọn loại sân:</label>
 						      <select id="inputTypeOfField" class="form-control" name="loaisan">
-										<%if(data){
-														data.forEach(t => {%>
-														<option value='<%=t.id%>'><%
-																if(t.loaisan ==5){%>
-																			5 Người
-																			<%}else if(t.loaisan == 7){%>
-																				
-																			7 Người
-																			
-																			<%}else{%>
-																				12 Người
-																			<%}%></option>
-														
-													<%});
-													}else{%>
-															<option>5 Người</option>
-															<option>7 Người</option>
-															<option>12 Người</option>
-													<%}
-										%>
+										<option>5 Người</option>
+										<option>7 Người</option>
+										<option>12 Người</option>
 						      </select>
 						    </div>
 						    <div class="form-group col-md-6">
@@ -136,42 +119,42 @@
 						    <div class="form-group col-md-6">
 						      <label for="inputDateFrom">Đặt từ:</label>
 						      <select id="inputDateFrom" class="form-control" name="gio">
-										<option selected>05:00</option>
-										<option value='7:30'>05:30</option>
-										<option value='7:30'>06:00</option>
-										<option value='7.30'>06:30</option>
-										<option value='7:30'>07:00</option>
+										<option selected value="5:00">05:00</option>
+										<option value='5:30'>05:30</option>
+										<option value='6:00'>06:00</option>
+										<option value='6.30'>06:30</option>
+										<option value='7:00'>07:00</option>
 										<option value='7:30'>07:30</option>
-										<option value='7:30'>08:00</option>
-										<option value='7:30'>08:30</option>
-										<option value='7:30'>09:00</option>
-										<option value='7:30'>09:30</option>
-										<option value='7:30'>10:00</option>
-										<option value='7:30'>10:30</option>
-										<option value='7:30'>11:00</option>
-										<option value='7:30'>11:30</option>
-										<option value='7:30'>12:00</option>
-										<option value='7:30'>12:30</option>
-										<option value='7:30'>13:00</option>
-										<option value='7:30'>13:30</option>
-										<option value='7:30'>14:00</option>
-										<option value='7:30'>14:30</option>
-										<option value='7:30'>15:00</option>
-										<option value='7:30'>15:30</option>
-										<option value='7:30'>16:00</option>
-										<option value='7:30'>16:30</option>
-										<option value='7:30'>17:00</option>
-										<option value='7:30'>17:30</option>
-										<option value='7:30'>18:00</option>
-										<option value='7:30'>18:30</option>
-										<option value='7:30'>19:00</option>
-										<option value='7:30'>19:30</option>
-										<option value='7:30'>20:00</option>
-										<option value='7:30'>20:30</option>
-										<option value='7:30'>21:00</option>
-										<option value='7:30'>21:30</option>
-										<option value='7:30'>22:00</option>
-										<option value='7:30'>22:30</option>
+										<option value='8:00'>08:00</option>
+										<option value='8:30'>08:30</option>
+										<option value='9:00'>09:00</option>
+										<option value='9:30'>09:30</option>
+										<option value='10:00'>10:00</option>
+										<option value='10:30'>10:30</option>
+										<option value='11:00'>11:00</option>
+										<option value='11:30'>11:30</option>
+										<option value='12:00'>12:00</option>
+										<option value='12:30'>12:30</option>
+										<option value='13:00'>13:00</option>
+										<option value='13:30'>13:30</option>
+										<option value='14:00'>14:00</option>
+										<option value='14:30'>14:30</option>
+										<option value='15:00'>15:00</option>
+										<option value='15:30'>15:30</option>
+										<option value='16:00'>16:00</option>
+										<option value='16:30'>16:30</option>
+										<option value='17:00'>17:00</option>
+										<option value='17:30'>17:30</option>
+										<option value='18:00'>18:00</option>
+										<option value='18:30'>18:30</option>
+										<option value='19:00'>19:00</option>
+										<option value='19:30'>19:30</option>
+										<option value='20:00'>20:00</option>
+										<option value='20:30'>20:30</option>
+										<option value='21:00'>21:00</option>
+										<option value='21:30'>21:30</option>
+										<option value='22:00'>22:00</option>
+										<option value='22:30'>22:30</option>
 						      </select>
 						    </div>
 						    <div class="form-group col-md-6">

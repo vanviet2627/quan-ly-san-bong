@@ -8,20 +8,16 @@ var mongoosePaginate = require('mongoose-paginate');
 const Schema = mongoose.Schema;
 
 var schedule= new Schema({
-   
     sanbong :{
         type: Schema.Types.ObjectId,
         ref : "Pitches",
     },
-    
     renter :{
-        // Người Thuê
         type : String,
-        default:'admin',
+        default: 'admin',
     },
     ngayThue :{
         type : String,
-
     },
     dattu:{
         type : String,
@@ -32,15 +28,11 @@ var schedule= new Schema({
     ngaytao :{
         type: Date,
         default : Date.now(),
-
     }
-
-
-    
 })
 
 schedule.plugin(mongoosePaginate);
-const lichDatSan = mongoose.model('schedule', schedule);
+const ScheduleModel = mongoose.model('schedule', schedule);
 
 module.exports = class lichDatSan_Database{
     constructor(data){
@@ -48,7 +40,7 @@ module.exports = class lichDatSan_Database{
     }
     // xem Tất cả Lịch đặt Sân 
     async view_schedule(){
-        let myData = await lichDatSan.find({})
+        let myData = await ScheduleModel.find({})
                                      .sort({ngaytao : -1})
         return myData
 
@@ -56,11 +48,11 @@ module.exports = class lichDatSan_Database{
     // thêm lịch đặt sân
     async add_schedule(){
         if(this.data){
-            let myData = new lichDatSan(this.data)
-            let t = await myData.save();
+            let newSchedule = new ScheduleModel(this.data)
+            let t = await newSchedule.save();
             // update lại trang thái sân từ 0 -> 1
             await Sanbong.findByIdAndUpdate({_id : t._id},{status : 1})
-            let show_data = await lichDatSan.findOne({_id :t.id}).populate('sanbong')
+            let show_data = await ScheduleModel.findOne({_id :t.id}).populate('sanbong')
             return show_data;
         }
         
