@@ -6,9 +6,8 @@
 
   <div class="container mt-5 pt-5">
     <div>
-      <form action="/payment_viet" method="POST">
+      <form action="/payment/type-ewallet" method="POST">
         <div class="row">
-
           <!-- User info -->
           <div class="col-12 col-md-4">
             <h5>Thông tin liên lạc:</h5>
@@ -41,11 +40,6 @@
           <div class="col-6 col-md-4">
             <h5>Thông tin thanh toán:</h5>
             <hr>
-            <!-- <p><span class="mr-1 font-weight-bold">Sân:</span> <%= data.fieldName %></p>
-            <p><span class="mr-1 font-weight-bold">Ngày:</span> <%= data.date %></p>
-            <p><span class="mr-1 font-weight-bold">Thời gian:</span> <%= data.time %></p>
-            <p><span class="mr-1 font-weight-bold">Trong:</span> <%= data.lasting %> giờ</p> -->
-
             <p><span class="mr-1 font-weight-bold">Sân:</span> <%if(data.sanbong){%><%= data.sanbong.loaisan %> Người<%}%></p>
             <p><span class="mr-1 font-weight-bold">Ngày:</span> <%= data.ngayThue %></p>
             <p><span class="mr-1 font-weight-bold">Thời gian:</span> <%= data.dattu %></p>
@@ -57,13 +51,13 @@
             <h5>Thanh toán:</h5>
             <hr>
             <div class="form-check mt-1">
-              <input class="form-check-input" type="radio" name="exampleRadios" id="momo" value="option1" checked>
+              <input class="form-check-input" type="radio" name="exampleRadios" id="momo" value="momo" checked>
               <label class="form-check-label" for="momo">
                 Mono
               </label>
             </div>
             <div class="form-check mt-1">
-              <input class="form-check-input" type="radio" name="exampleRadios" id="zalopay" value="option2">
+              <input class="form-check-input" type="radio" name="exampleRadios" id="zalopay" value="zalopay">
               <label class="form-check-label" for="zalopay">
                 Zalopay
               </label>

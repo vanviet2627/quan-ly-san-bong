@@ -13,11 +13,20 @@
 	<% include layouts/script %>
   <script>
     $('#header').addClass('header-scrolled');
-    $.getJSON('/payment/ewallet', function(data) {
-      if(data){
-        $('#qrReplacement').append(data.data.paymentLink);
-      }
-    })
+    let type = "<%= typeEwallet %>";
+    if(type == "momo"){
+      $.getJSON('/payment/ewallet/momo', function(data) {
+        if(data){
+          $('#qrReplacement').append(data.data.paymentLink);
+        }
+      })
+    } else {
+      $.getJSON('/payment/ewallet/zalopay', function(data) {
+        if(data){
+          $('#qrReplacement').append(data.data.paymentLink);
+        }
+      })
+    }
   </script>
 </body>
 </html>
