@@ -40,7 +40,7 @@ router.post('/payment', async(req, res, next) => {
   res.render('payment', {isLogin: true, data: dataBeforSave});
 })
 
-router.post('/payment/type-ewallet', (req, res) => {
+router.post('/payment/ewallet', (req, res) => {
   let typeOfEWallet = req.body.exampleRadios;
   // Get link API E-Wallet
   res.render('qr', {isLogin: true, typeEwallet: typeOfEWallet});
