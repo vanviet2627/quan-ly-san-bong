@@ -1,3 +1,5 @@
+/** Tam thoi chua dung */
+
 const db = require('../configs/connectDatabase');
 const mongoose = require('mongoose');
 var slug = require('mongoose-slug-updater');

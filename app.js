@@ -9,7 +9,7 @@ var usersRouter = require('./routes/users');
 var soccerFieldRouter = require('./routes/soccerField');
 var paymentRouter = require('./api/payment');
 
-// require('./configs/connectDatabase');
+require('./configs/connectDatabase');
 
 var app = express();
 // view engine setup

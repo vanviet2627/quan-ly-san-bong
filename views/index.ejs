@@ -4,8 +4,7 @@
 <body>
 	<% include layouts/header %>
 
-
-	 <input type="hidden" id="islogin" value="<%= isLogin%>">
+  <input type="hidden" id="islogin" value="<%= isLogin %>">
 	<!-- Start signin Modal area -->
 	<div class="modal fade" id="signinModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	  <div class="modal-dialog" role="document">
@@ -17,22 +16,23 @@
 	        </button>
 	      </div>
 	      <div class="modal-body mx-3">
-				<div id='thongbao'>
-					<% if(info.mess){%>
-						<div class="alert alert-danger" role="alert">
-							<%= info.mess%>
-						</div>
-					<%}%>
-				</div>
+
+          <div id='thongbao'>
+            <% if(info.mess){%>
+              <div class="alert alert-danger" role="alert">
+                <%= info.mess%>
+              </div>
+            <%}%>
+          </div>
 				  
 	        <form id='login'>
 	        	<div class="form-group">
-							<label for="inputEmail">Email hoặc SĐT:</label>
-							<input type="text" class="form-control" id="inputTypeOfField" name="username" autofocus="">
+							<label for="phoneNumber">Số điện thoại:</label>
+							<input type="text" class="form-control" id="phoneNumber" name="phoneNumber">
 						</div>
 						<div class="form-group">
-							<label for="inputPassword">Mật khẩu:</label>
-							<input type="password" class="form-control" id="inputPassword" name="password">
+							<label for="password">Mật khẩu:</label>
+							<input type="password" class="form-control" id="password" name="password">
 						</div>
 						<button type="submit" class="primary-btn py-2 text-uppercase d-block mx-auto">Đăng nhập</button>
 	        </form>
@@ -53,18 +53,18 @@
 					</button>
 				</div>
 				<div class="modal-body mx-3">
-					<form action="/signup">
+					<form id="signup">
 						<div class="form-group">
-							<label for="inputEmail">Email hoặc SĐT:</label>
-							<input type="text" class="form-control" id="inputTypeOfField">
+							<label for="phoneNumber">Số điện thoại:</label>
+							<input type="text" class="form-control" id="phoneNumber">
 						</div>
 						<div class="form-group">
-							<label for="inputPassword">Mật khẩu:</label>
-							<input type="password" class="form-control" id="inputPassword">
+							<label for="password">Mật khẩu:</label>
+							<input type="password" class="form-control" id="password">
 						</div>
 						<div class="form-group">
-								<label for="inputPassword">Nhập lại mật khẩu:</label>
-								<input type="password" class="form-control" id="inputRePassword">
+								<label for="rePassword">Nhập lại mật khẩu:</label>
+								<input type="password" class="form-control" id="rePassword">
 							</div>
 						<button type="submit" class="primary-btn py-2 text-uppercase d-block mx-auto">Đăng ký</button>
 					</form>
@@ -100,95 +100,76 @@
 				<div class="col-6 offset-3 mt-5">
 					<div class="my-4 mx-2">
 						<h2 class="mb-3">Đặt sân</h2>
-						<form id='datsan' action='/datsan' method='POST'>
-						  <div class="form-row">
-						    <div class="form-group col-md-6">
-						      <label for="inputTypeOfField">Chọn loại sân:</label>
-						      <select id="inputTypeOfField" class="form-control" name="loaisan">
-										<%if(data){
-														data.forEach(t => {%>
-														<option value='<%=t.id%>'><%
-																if(t.loaisan ==5){%>
-																			5 Người
-																			<%}else if(t.loaisan == 7){%>
-																				
-																			7 Người
-																			
-																			<%}else{%>
-																				12 Người
-																			<%}%></option>
-														
-													<%});
-													}else{%>
-															<option>5 Người</option>
-															<option>7 Người</option>
-															<option>12 Người</option>
-													<%}
-										%>
-						      </select>
-						    </div>
-						    <div class="form-group col-md-6">
-						      <label for="date">Chọn ngày:</label>
-						      <input type="date" class="form-control" id="date" name="ngay" placeholder="">
-						    </div>
-						  </div>
-						  <div class="form-row">
-						    <div class="form-group col-md-6">
-						      <label for="inputDateFrom">Đặt từ:</label>
-						      <select id="inputDateFrom" class="form-control" name="gio">
-										<option selected>05:00</option>
-										<option value='7:30'>05:30</option>
-										<option value='7:30'>06:00</option>
-										<option value='7.30'>06:30</option>
-										<option value='7:30'>07:00</option>
-										<option value='7:30'>07:30</option>
-										<option value='7:30'>08:00</option>
-										<option value='7:30'>08:30</option>
-										<option value='7:30'>09:00</option>
-										<option value='7:30'>09:30</option>
-										<option value='7:30'>10:00</option>
-										<option value='7:30'>10:30</option>
-										<option value='7:30'>11:00</option>
-										<option value='7:30'>11:30</option>
-										<option value='7:30'>12:00</option>
-										<option value='7:30'>12:30</option>
-										<option value='7:30'>13:00</option>
-										<option value='7:30'>13:30</option>
-										<option value='7:30'>14:00</option>
-										<option value='7:30'>14:30</option>
-										<option value='7:30'>15:00</option>
-										<option value='7:30'>15:30</option>
-										<option value='7:30'>16:00</option>
-										<option value='7:30'>16:30</option>
-										<option value='7:30'>17:00</option>
-										<option value='7:30'>17:30</option>
-										<option value='7:30'>18:00</option>
-										<option value='7:30'>18:30</option>
-										<option value='7:30'>19:00</option>
-										<option value='7:30'>19:30</option>
-										<option value='7:30'>20:00</option>
-										<option value='7:30'>20:30</option>
-										<option value='7:30'>21:00</option>
-										<option value='7:30'>21:30</option>
-										<option value='7:30'>22:00</option>
-										<option value='7:30'>22:30</option>
-						      </select>
-						    </div>
-						    <div class="form-group col-md-6">
-						      <label for="inputLasting">Đặt trong:</label>
-						      <select id="inputLasting" class="form-control" name="thoiluong">
-						        <option selected value='1'>1 giờ</option>
-						        <option value='1.5'>1.5 giờ</option>
-						        <option value='2'>2 giờ</option>
-						      </select>
-						    </div>
-						  </div>
-							<div id ='changes'>
-								<button type="submit" class="primary-btn py-2 text-uppercase d-block mx-auto mt-1">Đặt sân</button>
-							</div>
-							
-						  
-						</form>
+							<form id='datsan' action='/payment' method='POST'>
+								<div class="form-row">
+									<div class="form-group col-md-6">
+										<label for="size">Chọn loại sân:</label>
+										<select id="size" class="form-control" name="size">
+											<option value="5">5 Người</option>
+											<option value="7">7 Người</option>
+											<option value="12">12 Người</option>
+										</select>
+									</div>
+									<div class="form-group col-md-6">
+										<label for="date">Chọn ngày:</label>
+										<input type="date" class="form-control" id="date" name="date">
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="form-group col-md-6">
+										<label for="rentTime">Đặt từ:</label>
+										<select id="rentTime" class="form-control" name="time">
+											<option selected value="5:00">05:00</option>
+											<option value='5:30'>05:30</option>
+											<option value='6:00'>06:00</option>
+											<option value='6.30'>06:30</option>
+											<option value='7:00'>07:00</option>
+											<option value='7:30'>07:30</option>
+											<option value='8:00'>08:00</option>
+											<option value='8:30'>08:30</option>
+											<option value='9:00'>09:00</option>
+											<option value='9:30'>09:30</option>
+											<option value='10:00'>10:00</option>
+											<option value='10:30'>10:30</option>
+											<option value='11:00'>11:00</option>
+											<option value='11:30'>11:30</option>
+											<option value='12:00'>12:00</option>
+											<option value='12:30'>12:30</option>
+											<option value='13:00'>13:00</option>
+											<option value='13:30'>13:30</option>
+											<option value='14:00'>14:00</option>
+											<option value='14:30'>14:30</option>
+											<option value='15:00'>15:00</option>
+											<option value='15:30'>15:30</option>
+											<option value='16:00'>16:00</option>
+											<option value='16:30'>16:30</option>
+											<option value='17:00'>17:00</option>
+											<option value='17:30'>17:30</option>
+											<option value='18:00'>18:00</option>
+											<option value='18:30'>18:30</option>
+											<option value='19:00'>19:00</option>
+											<option value='19:30'>19:30</option>
+											<option value='20:00'>20:00</option>
+											<option value='20:30'>20:30</option>
+											<option value='21:00'>21:00</option>
+											<option value='21:30'>21:30</option>
+											<option value='22:00'>22:00</option>
+											<option value='22:30'>22:30</option>
+										</select>
+									</div>
+									<div class="form-group col-md-6">
+										<label for="lasting">Đặt trong:</label>
+										<select id="lasting" class="form-control" name="lasting">
+											<option selected value='1'>1 giờ</option>
+											<option value='1.5'>1.5 giờ</option>
+											<option value='2'>2 giờ</option>
+										</select>
+									</div>
+								</div>
+								<div id ='changes'>
+									<button type="submit" class="primary-btn py-2 text-uppercase d-block mx-auto mt-1">Đặt sân</button>
+								</div>
+							</form>
 					</div>
 				</div>
 			</div>
@@ -242,6 +223,18 @@
 					$('#header').removeClass('header-scrolled');
 				}
   		}))
+      $('login').validate({
+        rules: {
+          email: {
+            required: true,
+            email: true
+          },
+          password: {
+            required: true,
+            password: true
+          }
+        }
+      })
 	</script>
 	
 </body>

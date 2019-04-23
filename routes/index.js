@@ -1,7 +1,10 @@
 var express = require('express');
 var router = express.Router();
-const SanBong = require('../models/pitches.Model').Sanbong
-const lichDatSan = require('../models/schedule.Model')
+// const SanBong = require('../models/pitches.Model').Sanbong
+const Pitch = require('../models/pitch.model');
+const Schedule = require('../models/schedule.model');
+const User = require('../models/user.model');
+
 
 // check người dùng đăng nhập
 
@@ -14,42 +17,57 @@ router.get('/', (req, res, next) => {
     data : null
   });
 });
-// api login ảo lòi :))
-
-router.post('/checklogin',async (req, res) => {
-    let myData = req.body
-    console.log(myData);
-    
-   
-    let dataSanBong = await SanBong.find({})
-    
-    
-    if (myData.username == 'admin' || myData.username == 'user@gmail.com') {
-      if (myData.password == 'admin' || myData.password == '123') {
-        let info = {
-          acp: 1,
-        }
-        res.json(info)
-      } else {
-        let info = {
-          mess: "tài khoản, mật khẩu không đúng . Vui lòng Kiểm Tra lại",
-          acp: 0
-        }
-        res.json(info)
-      }
-
+// ====================================================
+//                        LOGIN
+// ====================================================
+router.post('/login',async (req, res) => {
+  let myData = req.body;
+  console.log(myData);
+  
+  if (myData.phoneNumber == '123' || myData.phoneNumber == '1234567890') {
+    if (myData.password == '123') {
+      let info = {
+        acp: 1
+      };
+      res.json(info);
     } else {
       let info = {
-        mess: "tài khoản, mật khẩu không đúng . Vui lòng Kiểm Tra lại",
+        mess: "Tài khoản hoặc mật khẩu không đúng.",
         acp: 0
       }
-      res.json(info)
+      res.json(info);
     }
-  })
-  .get('/checklogin',async (req, res) => {
 
-      res.redirect('/')    
-  })
+  } else {
+    let info = {
+      mess: "Tài khoản hoặc mật khẩu không đúng.",
+      acp: 0
+    }
+    res.json(info);
+  }
+})
+
+// =====================================================
+//                         USER
+// =====================================================
+
+router.get('/user', (req, res) => {
+  res.render('User', {
+    isLogin: true,
+    // info: {},
+  });
+});
+
+router.post('/user', (req,res) => {
+  let info = {
+    phoneNumber: req.phoneNumber,
+    password: req.password
+  }
+  let newUser = new User(info);
+  let rs = newUser.addUserByPhoneNumber();
+  res.json({"KQ": rs});
+})
+
 // api đặt sân 
 router.get('/s/',async(req,res)=>{
   let dataSanBong = await SanBong.find({})
@@ -59,42 +77,9 @@ router.get('/s/',async(req,res)=>{
     data: dataSanBong
   })
 })
-router.post('/payment', async(req, res, next) => {
-  let myData = req.body
-  console.log(myData);
-  
-  let info = {
-    sanbong : myData.loaisan,
-    ngayThue:myData.ngay,
-    dattu:myData.gio,
-    thoiluongThue:myData.thoiluong,
-    email: "user@gmail.com",
-  }
-  var t = new lichDatSan(info)
-  let dataBeforSave = await t.add_schedule()
-
-  res.render('payment', {isLogin: true, data: dataBeforSave});
-})
-// 
-router.get('/user',async (req, res) => {
-  let dataSanBong = await SanBong.find({})
-  res.render('User', {
-    isLogin: true,
-    info: {},
-    data : dataSanBong
-  });
-});
 
 router.get('/admin', (req, res) => {
   res.render('admin');
-});
-
-router.post('/signin', (req, res) => {
-  res.redirect('/');
-});
-
-router.post('/signup', (req, res) => {
-  res.redirect('/');
 });
 
 router.get('/searchfield', (req, res) => {
@@ -122,10 +107,30 @@ router.get('/payment', (req, res) => {
     date: "20/4/2019",
     time: "16:00",
     email: "asd@gmail.com",
-     sdt: "0968222222"
+    sdt: "0968222222"
   }
   res.render('payment', {isLogin: true, data: data});
 });
+
+router.post('/payment', async(req, res, next) => {
+  let data = req.body
+  console.log(data);
+  
+  // Get user info
+
+
+  let schedule = {
+    pitch: data.size,
+    renter: data.phoneNumber,
+    rentDate: data.date,
+    rentTime: data.time,
+    lasting: data.lasting,
+  }
+  // var newSchedule = new Schedule(schedule);
+  // let dataBeforSave = await newSchedule.add_schedule()
+  res.json(schedule);
+  // res.render('payment', {isLogin: true, data: dataBeforSave});
+})
 
 router.post('/payment_viet', (req, res) => {
   let info = {
@@ -140,12 +145,6 @@ router.post('/payment_viet', (req, res) => {
 
 router.get('/qr', (req, res) => {
   res.render('qr', {isLogin: true});
-});
-
-router.get('/Admin', (req, res) => {
-  res.render('Admin', {
-    isLogin: true
-  });
 });
 
 router.get('/profile', (req, res) => {
