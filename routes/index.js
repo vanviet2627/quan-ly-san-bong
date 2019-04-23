@@ -79,21 +79,8 @@ router.post('/login',async (req, res) => {
       res.json({"acp": 0, "mess": "Tài khoản hoặc mật khẩu không đúng."});
     })
 })
-.get('/login', async (req, res) => {
-    res.redirect('/')    
-})
 
-// api đặt sân 
-router.get('/s/', async(req, res)=>{
-  let dataSanBong = await Pitch.find({})
-  res.render('index', {
-    isLogin: true,
-    info: {},
-    data: dataSanBong
-  })
-})
-
-// 
+// Get User Page
 router.get('/user',async (req, res) => {
   let dataSanBong = await Pitch.find({})
   res.render('User', {
@@ -101,10 +88,6 @@ router.get('/user',async (req, res) => {
     info: {},
     data : dataSanBong
   });
-});
-
-router.get('/admin', (req, res) => {
-  res.render('admin');
 });
 
 router.post('/signup', (req, res) => {
@@ -121,28 +104,6 @@ router.post('/signup', (req, res) => {
   })
 });
 
-router.get('/alluser', (req, res) => {
-  let user = new User();
-  user.getAllUser()
-    .then(users => {
-      res.json(users);
-    }).catch(err => {
-      res.json(err)
-    })
-});
-
-router.get('/searchfield', (req, res) => {
-  res.render('schedule', {
-    isLogin: false
-  });
-});
-
-router.get('/Admin', (req, res) => {
-  res.render('Admin', {
-    isLogin: true
-  });
-});
-
 router.get('/profile', (req, res) => {
   res.render('profile', {
     isLogin: true
@@ -155,6 +116,28 @@ router.get('/account', (req, res) => {
   });
 });
 
+// ==========================================
+//                   Admin
+// ==========================================
 
+router.get('/admin', (req, res) => {
+  res.render('admin');
+});
+
+router.get('/alluser', (req, res) => {
+  let user = new User();
+  user.getAllUser()
+    .then(users => {
+      res.json(users);
+    }).catch(err => {
+      res.json(err)
+    })
+});
+
+router.get('/Admin', (req, res) => {
+  res.render('Admin', {
+    isLogin: true
+  });
+});
 
 module.exports = router;

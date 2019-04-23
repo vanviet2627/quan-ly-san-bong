@@ -13,8 +13,7 @@ var schedule= new Schema({
         ref : "Pitches",
     },
     renter: {
-        type: String,
-        default: 'user@gmail.com',
+        type: String
     },
     ngayThue: {
         type: String,
@@ -52,7 +51,7 @@ module.exports = class lichDatSan_Database{
             let t = await newSchedule.save();
             // update lại trang thái sân từ 0 -> 1
             await PitchModel.findByIdAndUpdate({_id: t._id},{status: 1})
-            let show_data = await ScheduleModel.findOne({_id: t.id}).populate('sanbong')
+            let show_data = await ScheduleModel.findOne({_id: t.id}).populate('User')
             return show_data;
         }
         
