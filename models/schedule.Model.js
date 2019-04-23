@@ -51,7 +51,7 @@ module.exports = class lichDatSan_Database{
             let t = await newSchedule.save();
             // update lại trang thái sân từ 0 -> 1
             await PitchModel.findByIdAndUpdate({_id: t._id},{status: 1})
-            let show_data = await ScheduleModel.findOne({_id: t.id}).populate('User')
+            let show_data = await ScheduleModel.findOne({_id: t.id}).populate('sanbong')
             return show_data;
         }
         
