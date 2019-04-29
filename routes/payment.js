@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const Schedule = require('../models/schedule.model');
+const { forwardAuthenticated, ensureAuthenticated } = require('../configs/auth');
 
 // QR API link
 router.get('/ewallet/:type', (req, res) => {
@@ -12,24 +13,21 @@ router.get('/ewallet/:type', (req, res) => {
   res.status(200).json({data: data});
 });
 
-router.post('/', async(req, res, next) => {
+router.post('/', ensureAuthenticated, async(req, res, next) => {
   let info = req.body;
-
   let bill = {
     pitch: info.pitchSize,
-    renter: "user@gmail.com",
+    renter: req.user.email,
     rentDate: info.rentDate,
     rentTime: info.rentTime,
     lasting: info.lasting,
   }
   
-  var newSchedule = new Schedule(bill)
-  newSchedule.addSchedule()
-    .then(schedule => {
-      res.render('payment', {
-        isLogin: true,
-        userType: "member",
-        data: schedule});
+  new Schedule(bill).addSchedule().then(schedule => {
+    res.render('payment', {
+      isLogin: true,
+      userType: req.user.userType,
+      data: schedule });
     }).catch(err => {
       res.render('error', {message: err.message, error: ''});
     })

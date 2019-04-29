@@ -3,13 +3,13 @@ var router = express.Router();
 const Pitch = require('../models/pitches.model');
 const Schedule = require('../models/schedule.model');
 const User = require('../models/user.model');
+const { forwardAuthenticated, ensureAuthenticated } = require('../configs/auth');
 
-router.get('/alluser', (req, res) => {
-  let data = new User().getAllUser();
-  data.then(users => {
+router.get('/alluser', ensureAuthenticated, (req, res) => {
+  new User().getAllUser().then(users => {
     res.render('alluser', {
       isLogin: true,
-      userType: "admin",
+      userType: req.user.userType,
       data: users
     });
   }).catch(err => {
@@ -17,14 +17,11 @@ router.get('/alluser', (req, res) => {
   })
 });
 
-router.get('/allschedule', (req, res) => {
-  let data = new Schedule().getAllSchedule();
-  data.then(schedule => {
-    console.log(schedule);
-    
+router.get('/', ensureAuthenticated, (req, res) => {
+  new Schedule().getAllSchedule().then(schedule => {
     res.render('allschedule', {
       isLogin: true,
-      userType: "admin",
+      userType: req.user.userType,
       data: schedule
     });
   }).catch(err => {
@@ -32,22 +29,21 @@ router.get('/allschedule', (req, res) => {
   })
 });
 
-router.post('/pitch', (req, res) => {
+router.post('/pitch', ensureAuthenticated, (req, res) => {
   let data = {
     pitchName: req.body.pitchName,
     pitchSize: req.body.pitchSize,
     status: req.body.status,
     renter: req.body.render
   }
-  let newPitch = new Pitch(data).addPitch();
-  newPitch.then(rs => {
-      res.status(200).json({success: true, rs: rs})
+  new Pitch(data).addPitch().then(newPitch => {
+      res.status(200).json({success: true, rs: newPitch})
     }).catch(err => {
       res.status(500).json({err: err})
     })
 })
 
-router.get('/uncheckallpitch', (req, res) => {
+router.get('/uncheckallpitch', ensureAuthenticated, (req, res) => {
   new Pitch().uncheckAllPitch().then(rs => {
     res.json("Uncheck All Pitch!");
   }).catch(err => {

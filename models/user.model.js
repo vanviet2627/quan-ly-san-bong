@@ -18,6 +18,9 @@ let UserSchema = Schema({
     phoneNumber: Number,
     userType: { type: String, default: "member" }
 })
+UserSchema.methods.validPassword = function(password) {
+    return ( this.password === password );
+};
 
 class UserClass {
     constructor(info){

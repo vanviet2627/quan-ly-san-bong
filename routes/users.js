@@ -2,10 +2,10 @@ var express = require('express');
 var router = express.Router();
 const User = require('../models/user.model');
 const Schedule = require('../models/schedule.model');
+const passport = require('passport');
 const { forwardAuthenticated, ensureAuthenticated } = require('../configs/auth');
 
-// login, logout & signup. Return as authenticate API
-router.post('/login', (req, res) => {
+router.post('/login', (req, res, next) => {
   let info = {
     email: req.body.email,
     password: req.body.password
@@ -13,22 +13,23 @@ router.post('/login', (req, res) => {
   if(!info.email || !info.password) {
     return res.json({acp: 0, mess: "Chưa nhập đầy đủ thông tin!"});
   }
-  new User(info.email).findOneUserByEmail()
-    .then(user => {
-      // User is not exist
-      if(user === null) { 
-        return res.json({acp: 0, mess: "Tài khoản chưa đăng ký!"})
+  passport.authenticate('local', (err, user, info) => {
+    if (err) {
+      console.log(err);
+      return json({mess: err});
+    }
+    if (!user) {
+      return res.json({acp: 0, mess: info.message}); 
+    }
+    req.logIn(user, (err) => {
+      if (err) { 
+      console.log(err);
+      return next(err);
       }
-      // Check passwd
-      if(info.password === user.password) {
-        res.json({acp: 1, user});
-      } else {
-        return res.json({acp: 0, "mess": "Tài khoản hoặc mật khẩu không đúng."});
-      }
-    }).catch(err => {
-      res.json({acp: 0, "mess": "Tài khoản hoặc mật khẩu không đúng."});
-    })
-})
+      return res.json({acp: 1, mess: "Đăng nhập thành công!"});
+    });
+  })(req, res, next);
+});
 
 router.post('/signup', (req, res) => {
   let info = {
@@ -56,22 +57,23 @@ router.post('/signup', (req, res) => {
     })
 })
 
-// user page menu
-router.get('/', (req, res) => {
+// User page menu
+router.get('/', ensureAuthenticated, (req, res) => {
+  console.log({USERPAGE: req.user});
   res.render('user', {
     isLogin: true,
-    userType: "member",
+    userType: req.user.userType,
     info: {}
   });
 });
 
-router.get('/profile', async (req, res) => {
+router.get('/profile', ensureAuthenticated, async (req, res) => {
   let t = await User.UserModel.find()
   let data = t[1]
   
   res.render('userschedule', {
     isLogin: true,
-    userType: "member",
+    userType: req.user.userType,
     data : data
   });
 });
@@ -79,13 +81,13 @@ router.get('/profile', async (req, res) => {
 router.get('/changepassword', ensureAuthenticated, (req, res) => {
   res.render('changepassword', {
     isLogin: true,
-    userType: "member",
+    userType: req.user.userType,
     info: {},
     data : {}
   });
 });
 
-router.post('/changepassword', (req, res) => {
+router.post('/changepassword', ensureAuthenticated, (req, res) => {
   let info = {
     password: req.body.password,
     newPassword: req.body.newPassword,
@@ -98,24 +100,22 @@ router.post('/changepassword', (req, res) => {
 
 });
 
-router.get('/history', async (req, res) => {
-  let t = await User.UserModel.find()
-  // random 1 id user 
-  console.log(t);
-  
-  let idUser = t[1].id
-  let myData =await Schedule.ScheduleModel.find({renter:idUser}).sort({createTime:-1}).populate('pitch').populate('renter')
-  res.render('userschedule', {
-    isLogin: true,
-    userType: "member",
-    info: {},
-    data : myData,
-  });
+router.get('/history', ensureAuthenticated, async (req, res) => {
+  new Schedule( req.user._id ).getScheduleById().then(userSchedules => {
+    console.log({SCHEDULE: userSchedules});
+    
+    res.render('userschedule', {
+      isLogin: true,
+      userType: req.user.userType,
+      info: {},
+      data : userSchedules,
+    });
+  })
 });
 
 router.get('/logout', (req, res) => {
   req.logout();
-  res.redirect('../');
+  res.redirect('/');
 });
 
 module.exports = router;

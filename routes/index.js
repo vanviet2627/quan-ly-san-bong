@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
-const { forwardAuthenticated, ensureAuthenticated } = require('../configs/auth');
+const { forwardAuthenticated } = require('../configs/auth');
 
 /* Get Home Page. */
 router.get('/', forwardAuthenticated, (req, res, next) => {

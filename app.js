@@ -10,7 +10,7 @@ var passport = require('passport');
 require('./configs/connectDatabase');
 
 // implement passport
-require('./configs/passport');
+let a = require('./configs/passport');
 
 // implement router
 var indexRouter = require('./routes/index');
