@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 const User = require('../models/user.model');
 const Schedule = require('../models/schedule.model');
+const { forwardAuthenticated, ensureAuthenticated } = require('../configs/auth');
 
 // login, logout & signup. Return as authenticate API
 router.post('/login', (req, res) => {
