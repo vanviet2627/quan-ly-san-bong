@@ -1,7 +1,3 @@
-// ==========================================
-//                   PAYMENT
-// ==========================================
-
 var express = require('express');
 var router = express.Router();
 const Schedule = require('../models/schedule.model');
@@ -21,7 +17,7 @@ router.post('/', async(req, res, next) => {
 
   let bill = {
     pitch: info.pitchSize,
-    renter: "viet@gmail.com",
+    renter: "user@gmail.com",
     rentDate: info.rentDate,
     rentTime: info.rentTime,
     lasting: info.lasting,
