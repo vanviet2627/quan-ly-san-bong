@@ -23,14 +23,6 @@ router.post('/login', (req, res) => {
       // Check passwd
       if(info.password === user.password) {
         res.json({acp: 1, user});
-        // res.render('user', {
-        //   isLogin: true,
-        //   userInfo: {
-        //     userType: user.userType,
-        //     email: user.email
-        //   },
-        //   info: {}
-        // });
       } else {
         return res.json({acp: 0, "mess": "Tài khoản hoặc mật khẩu không đúng."});
       }
