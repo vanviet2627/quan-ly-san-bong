@@ -4,7 +4,7 @@ const passport = require('passport');
 const { forwardAuthenticated, ensureAuthenticated } = require('../configs/auth');
 
 /* Get Home Page. */
-router.get('/', (req, res, next) => {
+router.get('/', forwardAuthenticated, (req, res, next) => {
   res.render('index', {
     isLogin: false,
     info: {},

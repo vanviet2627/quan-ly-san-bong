@@ -1,60 +1,62 @@
 var express = require('express');
 var router = express.Router();
 const User = require('../models/user.model');
-const { forwardAuthenticated, ensureAuthenticated } = require('../configs/auth');
-const passport = require('passport');
+const Schedule = require('../models/schedule.model');
 
 // login, logout & signup. Return as authenticate API
-router.post('/login', (req, res, next) => {
-  req.login(user, function(err) {
-    console.log("Alooo");
-    if (err) { return next(err); }
-    return res.redirect('/user/' + req.user.username);
-  });
-
-  // passport.authenticate(user, {
-  //   successRedirect: '/user'
-  // }, (req, res) => {
-  //   console.log(req);
-  //   res.json({acp: 0, mess: "Khong dung!"});
-  // });
-
-  // let info = {
-  //   email: req.body.email,
-  //   password: req.body.password
-  // }
-  // new User(info.email).findOneUserByEmail()
-  //   .then(rs => {
-  //     // User is not exist
-  //     if(rs === null) { res.json({"exist": false, err}) }
-
-  //     // Check passwd
-  //     // Assume that password has been encrypted =))
-  //     if(info.password === rs.password) {
-  //       res.json({"acp": 1, email: rs.email});
-  //     } else {
-  //       res.json({"acp": 0, "mess": "Tài khoản hoặc mật khẩu không đúng."});
-  //     }
-  //   }).catch(err => {
-  //     res.json({"acp": 0, "mess": "Tài khoản hoặc mật khẩu không đúng."});
-  //   })
+router.post('/login', (req, res) => {
+  let info = {
+    email: req.body.email,
+    password: req.body.password
+  }
+  if(!info.email || !info.password) {
+    return res.json({acp: 0, mess: "Chưa nhập đầy đủ thông tin!"});
+  }
+  new User(info.email).findOneUserByEmail()
+    .then(user => {
+      // User is not exist
+      if(user === null) { 
+        return res.json({acp: 0, mess: "Tài khoản chưa đăng ký!"})
+      }
+      // Check passwd
+      if(info.password === user.password) {
+        res.json({acp: 1, user});
+      } else {
+        return res.json({acp: 0, "mess": "Tài khoản hoặc mật khẩu không đúng."});
+      }
+    }).catch(err => {
+      res.json({acp: 0, "mess": "Tài khoản hoặc mật khẩu không đúng."});
+    })
 })
 
 router.post('/signup', (req, res) => {
   let info = {
     email: req.body.email,
-    password: req.body.password
+    password: req.body.password,
+    repassword: req.body.repassword
   }
-  let newUser = new User(info).addUser();
-  newUser.then(rs => {
-    res.json({"success": true});
-  }).catch(err => {
-    res.json({"sucess": false, "err": err});
-  })
-});
+  if(!info.email || !info.password || !info.repassword) {
+    return res.json({acp: 0, mess: "Chưa nhập đầy đủ thông tin!"});
+  }
+  if(info.password !== info.repassword) {
+    return res.json({acp: 0, mess: "Mật khẩu không trùng khớp!"});
+  }
+  new User(info).addUser()
+    .then(newUser => {
+      // User is not exist
+      if(newUser === null) { 
+        return res.json({exist: false, err});
+      }
+        res.json({"acp": 1, "mess": "Tạo tài khoản thành công!"});
+    }).catch(err => {
+      if(err.code === 11000)
+        return res.json({"acp": 0, "mess": "Email đã tồn tại!"});
+      res.json({"acp": 0, "mess": "Tạo tài khoản không thành công!", err: err});
+    })
+})
 
 // user page menu
-router.get('/', ensureAuthenticated, (req, res) => {
+router.get('/', (req, res) => {
   res.render('user', {
     isLogin: true,
     userType: "member",
@@ -62,10 +64,14 @@ router.get('/', ensureAuthenticated, (req, res) => {
   });
 });
 
-router.get('/profile', ensureAuthenticated, (req, res) => {
-  res.render('profile', {
+router.get('/profile', async (req, res) => {
+  let t = await User.UserModel.find()
+  let data = t[1]
+  
+  res.render('userschedule', {
     isLogin: true,
-    userType: "member"
+    userType: "member",
+    data : data
   });
 });
 
@@ -85,9 +91,25 @@ router.post('/changepassword', (req, res) => {
     reNewPassword: req.body.reNewPassword,
   }
   if(info.newPassword !== info.reNewPassword) {
-    return res.json({acp: 0, mess: "Mật khẩu mới không khớp nhau!"});
+    return res.json({acp: 0, mess: "Mật khẩu mới không trùng khớp!"});
   }
   res.json({acp: 1});
+
+});
+
+router.get('/history', async (req, res) => {
+  let t = await User.UserModel.find()
+  // random 1 id user 
+  console.log(t);
+  
+  let idUser = t[1].id
+  let myData =await Schedule.ScheduleModel.find({renter:idUser}).sort({createTime:-1}).populate('pitch').populate('renter')
+  res.render('userschedule', {
+    isLogin: true,
+    userType: "member",
+    info: {},
+    data : myData,
+  });
 });
 
 router.get('/logout', (req, res) => {
