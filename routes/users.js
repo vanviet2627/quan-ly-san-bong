@@ -68,14 +68,13 @@ router.get('/', ensureAuthenticated, (req, res) => {
 });
 
 router.get('/profile', ensureAuthenticated, async (req, res) => {
-  let t = await User.UserModel.find()
-  let data = t[1]
-  
-  res.render('userschedule', {
-    isLogin: true,
-    userType: req.user.userType,
-    data : data
-  });
+  new User(req.user.email).findOneUserByEmail().then(user => {
+    res.render('profile', {
+      isLogin: true,
+      userType: req.user.userType,
+      data : user
+    });
+  })
 });
 
 router.get('/changepassword', ensureAuthenticated, (req, res) => {
