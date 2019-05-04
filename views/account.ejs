@@ -6,35 +6,36 @@
     <!-- Navbar -->
     <% include layouts/header %>
 <!--Đổi mật khẩu-->
-             <div class="container mt-5 pt-5" id="#checkRePassword">
+      <div class="container mt-5 pt-5" id="checkRePassword">
 				 <div class="container-fuild">
 						<div class="d-flex justify-content-around align-items-center">
 							<h4 class="mb-3">Đổi mật khẩu:</h4>
 						</div>
 							<div class="form-group">
-								<label>Mật Khẩu cũ</label>
+								<label class="font-weight-bold">Mật Khẩu cũ</label>
 								<input class="form-control" id="password" name="password" type="password" placeholder="Vui lòng nhập mật khẩu cũ">
 							</div>
 							<div class="form-group">
-								<label>Mật Khẩu mới</label>
-								<input class="form-control" id="newPassword" name="password" type="password" placeholder="Vui lòng nhập mật khẩu mới">
+								<label class="font-weight-bold">Mật Khẩu mới</label>
+								<input class="form-control" id="newPassword" name="newPassword" type="password" placeholder="Vui lòng nhập mật khẩu mới">
 							</div>
 							<div class="form-group">
-								<label>Xác nhận lại mật khẩu</label>
-								<input class="form-control" id="reNewPassword" name="password" type="password" placeholder="Vui lòng nhập lại mật khẩu mới	">
+								<label class="font-weight-bold">Xác nhận lại mật khẩu</label>
+								<input class="form-control" id="reNewPassword" name="reNewPassword" type="password" placeholder="Vui lòng nhập lại mật khẩu mới	">
 							</div>
+							<p class="d-inline-block pt-3 font-italic "> Lưu ý :Vui lòng nhập đầy đủ các phần</p>	
 							<div class="modal-footer d-flex justify-content-center">
 								<button onclick="login()" class="btn btn-success mr-4 px-4">Xác nhận</button>
-								<button type="button" class="btn btn-danger" data-dismiss="modal">Trờ về</button>
+								<button type="button" class="btn btn-danger" data-dismiss="modal">Trở về</button>
 							</div>		
 					</div>
-             </div>
+      </div>
 
 	<!-- footer -->
 	<% include layouts/footer %>
     <!-- Script -->
 	<% include layouts/script %>
-	<script type="text/javascript">
+	<!-- <script type="text/javascript">
 		$(document).ready(function() {
 			$("#checkRePassword").validate({
 					rules: {
@@ -69,7 +70,7 @@
 					}
 				});
 	});
-	</script>
+	</script> -->
 
 
   </body>

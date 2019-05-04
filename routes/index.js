@@ -1,90 +1,15 @@
 var express = require('express');
 var router = express.Router();
-// const SanBong = require('../models/pitches.Model').Sanbong
-const Pitch = require('../models/pitch.model');
-const Schedule = require('../models/schedule.model');
-const User = require('../models/user.model');
+const Pitch = require('../models/pitches.Model').PitchModel
+const Schedule = require('../models/schedule.Model')
+const User = require('../models/user.Model');
 
-
-// check người dùng đăng nhập
-
-/* GET home page. */
+/* Get Home Page. */
 router.get('/', (req, res, next) => {
-
   res.render('index', {
     isLogin: false,
     info: {},
     data : null
-  });
-});
-// ====================================================
-//                        LOGIN
-// ====================================================
-router.post('/login',async (req, res) => {
-  let myData = req.body;
-  console.log(myData);
-  
-  if (myData.phoneNumber == '123' || myData.phoneNumber == '1234567890') {
-    if (myData.password == '123') {
-      let info = {
-        acp: 1
-      };
-      res.json(info);
-    } else {
-      let info = {
-        mess: "Tài khoản hoặc mật khẩu không đúng.",
-        acp: 0
-      }
-      res.json(info);
-    }
-
-  } else {
-    let info = {
-      mess: "Tài khoản hoặc mật khẩu không đúng.",
-      acp: 0
-    }
-    res.json(info);
-  }
-})
-
-// =====================================================
-//                         USER
-// =====================================================
-
-router.get('/user', (req, res) => {
-  res.render('User', {
-    isLogin: true,
-    // info: {},
-  });
-});
-
-router.post('/user', (req,res) => {
-  let info = {
-    phoneNumber: req.phoneNumber,
-    password: req.password
-  }
-  let newUser = new User(info);
-  let rs = newUser.addUserByPhoneNumber();
-  res.json({"KQ": rs});
-})
-
-// api đặt sân 
-router.get('/s/',async(req,res)=>{
-  let dataSanBong = await SanBong.find({})
-  res.render('index', {
-    isLogin: true,
-    info: {},
-    data: dataSanBong
-  })
-})
-
-router.get('/admin', (req, res) => {
-  res.render('admin');
-});
-
-router.get('/searchfield', (req, res) => {
-  res.render('schedule', {
-    isLogin: false
   });
 });
 
@@ -93,58 +18,90 @@ router.get('/searchfield', (req, res) => {
 // ==========================================
 
 // QR API link
-router.get('/payment/ewallet/', (req, res) => {
-  let eWallet = "Đấng óc chó Ahihi";
+router.get('/payment/ewallet/:type', (req, res) => {
+  let type = req.params.type;
+  let eWallet = type == "momo" ? "link momo payment" : "link zalopay payment";
   let data = {
     paymentLink: `<img src='http://chart.apis.google.com/chart?cht=qr&chl=${eWallet}&chs=300' alt='qr' />`
   }
   res.status(200).json({data: data});
 });
 
-router.get('/payment', (req, res) => {
-  let data = {
-    fieldName: "Sân A",
-    date: "20/4/2019",
-    time: "16:00",
-    email: "asd@gmail.com",
-    sdt: "0968222222"
-  }
-  res.render('payment', {isLogin: true, data: data});
-});
-
 router.post('/payment', async(req, res, next) => {
-  let data = req.body
-  console.log(data);
-  
-  // Get user info
-
-
-  let schedule = {
-    pitch: data.size,
-    renter: data.phoneNumber,
-    rentDate: data.date,
-    rentTime: data.time,
-    lasting: data.lasting,
+  let info = req.body;
+  let bill = {
+    sanbong: info.loaisan,
+    renter: "user@gmail.com",
+    ngayThue: info.ngay,
+    dattu: info.gio,
+    thoiluongThue: info.thoiluong,
   }
-  // var newSchedule = new Schedule(schedule);
-  // let dataBeforSave = await newSchedule.add_schedule()
-  res.json(schedule);
-  // res.render('payment', {isLogin: true, data: dataBeforSave});
+  var newSchedule = new Schedule(bill)
+  newSchedule.add_schedule()
+    .then(rs => {
+      console.log({"RS": rs});
+      res.render('payment', {isLogin: true, data: rs});
+    }).catch(err => {
+      console.log({"ERRR": err});
+      res.render('error', {message: "ERROR 404", error: {status: err}});
+    })
 })
 
-router.post('/payment_viet', (req, res) => {
-  let info = {
-    phoneNumber: req.body.phoneNumber,
-    typeOfEWallet: req.body.exampleRadios
-  }
-  console.log(info);
+router.post('/payment/ewallet', (req, res) => {
+  let typeOfEWallet = req.body.exampleRadios;
   // Get link API E-Wallet
-
-  res.redirect('/qr');
+  res.render('qr', {isLogin: true, typeEwallet: typeOfEWallet});
 });
 
-router.get('/qr', (req, res) => {
-  res.render('qr', {isLogin: true});
+// ==========================================
+//                   User
+// ==========================================
+
+router.post('/login',async (req, res) => {
+  let info = {
+    email: req.body.email,
+    password: req.body.password
+  }
+  let dataSanBong = await Pitch.find({})
+  new User(info).findOneUser()
+    .then(rs => {
+      // User is not exist
+      if(rs === null) { res.json({"exist": false, err}) }
+
+      // Check passwd
+      // Assume that password has been encrypted =))
+      if(info.password === rs.password) {
+        res.json({"acp": 1, email: rs.email});
+      } else {
+        res.json({"acp": 0, "mess": "Tài khoản hoặc mật khẩu không đúng."});
+      }
+    }).catch(err => {
+      res.json({"acp": 0, "mess": "Tài khoản hoặc mật khẩu không đúng."});
+    })
+})
+
+// Get User Page
+router.get('/user',async (req, res) => {
+  let dataSanBong = await Pitch.find({})
+  res.render('User', {
+    isLogin: true,
+    info: {},
+    data : dataSanBong
+  });
+});
+
+router.post('/signup', (req, res) => {
+  let info = {
+    email: req.body.email,
+    password: req.body.password
+  }
+  let newUser = new User(info);
+  let rs = newUser.addUser();
+  rs.then(() => {
+    res.json({"success": true});
+  }).catch(err => {
+    res.json({"sucess": false, "err": err});
+  })
 });
 
 router.get('/profile', (req, res) => {
@@ -155,6 +112,30 @@ router.get('/profile', (req, res) => {
 
 router.get('/account', (req, res) => {
   res.render('account', {
+    isLogin: true
+  });
+});
+
+// ==========================================
+//                   Admin
+// ==========================================
+
+router.get('/admin', (req, res) => {
+  res.render('admin');
+});
+
+router.get('/alluser', (req, res) => {
+  let user = new User();
+  user.getAllUser()
+    .then(users => {
+      res.json(users);
+    }).catch(err => {
+      res.json(err)
+    })
+});
+
+router.get('/Admin', (req, res) => {
+  res.render('Admin', {
     isLogin: true
   });
 });

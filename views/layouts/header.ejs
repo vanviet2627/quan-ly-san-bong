@@ -3,7 +3,7 @@
         <div class="row align-items-center justify-content-between d-flex pt-2 pb-1">
             <div id="logo">
                 <!-- <a href="/"><img src="img/logo.png" alt="logo" title="Trang chủ" /></a> -->
-                <a href="/"><img src="/img/soccer-ball.svg" width="30" alt="LOGO" title="Trang chủ" /></a>
+                <a href="/"><img src="/img/soccer-ball.svg" width="30" alt="LOGO" title="Trang chủ" /> <span style="font-size:1.2rem; color: white; vertical-align: middle; padding-left: 2px;">SÂN BÓNG MINI</span></a>
             </div>
             <nav id="nav-menu-container">
                 <% if(isLogin==true){ %>
@@ -11,7 +11,8 @@
                         <li class="dropdown open">
                           <a class="dropdown-toggle text-white" data-toggle="dropdown">Quản lý tài khoản</a>
                           <ul class="dropdown-menu">
-                            <li><a href="/profile">Xem lý lịch cá nhân</a></li>
+                            <li><a href="/user">Quản lý cá nhân</a></li>
+                            <li><a href="/profile">Thông tin cá nhân</a></li>
                             <li><a href="/account">Đổi mật khẩu</a></li>
                             <li><a href="/user/signout">Đăng Xuất</a></li>
                           </ul>
