@@ -13,12 +13,12 @@
                             <a class="dropdown-toggle text-white" data-toggle="dropdown">Quản lý tài khoản</a>
                             <ul class="dropdown-menu">
                                 <li><a href="/user">Quản lý cá nhân</a></li>
-                                <li><a href="/profile">Thông tin cá nhân</a></li>
-                                <li><a href="/account">Đổi mật khẩu</a></li>
+                                <li><a href="/user/profile">Thông tin cá nhân</a></li>
+                                <li><a href="/user/account">Đổi mật khẩu</a></li>
                                 <li><a href="/user/signout">Đăng Xuất</a></li>
                             </ul>
                             </li>
-                            <li class="nav-item"><a href="/history">Lịch sử</a></li>
+                            <li class="nav-item"><a href="/history">Lịch sắp tới</a></li>
                             <a href="/user" class="primary-btn text-uppercase ml-4 px-4">Đặt sân</a>	          
                         </ul>
                     <% } else if(userType=="admin") { %>
@@ -32,7 +32,7 @@
                                 <li><a href="/user/signout">Đăng Xuất</a></li>
                             </ul>
                             </li>
-                            <li class="nav-item"><a href="/history">Lịch sử</a></li>
+                            <li class="nav-item"><a href="/history">Lịch sắp tới</a></li>
                             <a href="#finding" class="primary-btn text-uppercase ml-4 px-4">Đặt sân</a>	          
                         </ul>
                     <% } else { %>

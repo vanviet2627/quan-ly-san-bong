@@ -75,6 +75,7 @@ router.post('/signup', (req, res) => {
 router.get('/profile', (req, res) => {
   res.render('profile', {
     isLogin: true,
+    userType: "member"
   });
 });
 
