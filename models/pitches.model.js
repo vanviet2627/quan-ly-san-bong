@@ -5,7 +5,7 @@ mongoose.plugin(slug);
 var mongoosePaginate = require('mongoose-paginate');
 const Schema = mongoose.Schema;
 
-var Pitch = new Schema({
+var PitchSchema = new Schema({
     pitchName: {
         type: String,
         required: true,
@@ -17,22 +17,43 @@ var Pitch = new Schema({
     status: { // (!rented) ? 0 : 1
         type: Number,
         default: 0,     
-    },
-    renter: [
-        {type: Schema.Types.ObjectId, ref : "User"}
-    ]
+    }
 })
-let ModelName = 'Pitch';
-Pitch.plugin(mongoosePaginate);
-const PitchModel = mongoose.model(ModelName, Pitch);
 
-module.exports = class PitchClass{
+class PitchClass {
     constructor(data){
         this.data = data
     }
     async addPitch() {
-        let myData = new PitchModel(this.data);
-        return await myData.save()
+        return await new PitchModel(this.data).save();
+    }
+    async findAvailablePitchByPitchSize() { // Input: Pitch.pitchSize _ Output: pitchId available or null
+        return new Promise((resolve, reject) => {
+            if(this.data) {
+                let pitches = PitchModel.find({pitchSize: this.data}).exec((err, pitches) => {
+                    if(pitches === undefined || pitches.length === 0) {
+                        reject("Sân không tồn tại!");
+                    } else {
+                        pitches.forEach(pitch => {
+                            if(pitch.status == 0) {
+                                resolve(pitch._id);
+                            }
+                        });
+                        reject("Hết sân!");
+                    }
+                })
+            }
+        })
+    };
+    async checkedPitch() {
+        return await PitchModel.findByIdAndUpdate({_id: this.data}, {status: 1});
+    };
+    async uncheckAllPitch() {
+        await PitchModel.find().then(pitches => {
+            pitches.forEach(async pitch => {
+                await PitchModel.findOneAndUpdate({_id: pitch._id}, {status: 0});
+            })
+        })
     }
     del_pitches(){
         let myData_slug = this.data.slug;
@@ -46,15 +67,21 @@ module.exports = class PitchClass{
                 res.sendStatus(400).json(err)
             })
     }
-    async update_pitches(){
+    async update_pitches() {
         let myData_id = this.data.id;
         let t = await PitchModel.findOneAndUpdate({_id : myData_id})
     }
-    async show_pitches(){
+    async show_pitches() {
         // hiện thị sân bóng chưa đặt
-        let t = await PitchModel.find({})
-        return t
+        return await PitchModel.find({})
     }
 }
+
+
+let ModelName = 'Pitch';
+PitchSchema.plugin(mongoosePaginate);
+const PitchModel = mongoose.model(ModelName, PitchSchema);
+
+module.exports = PitchClass;
 module.exports.PitchModel = PitchModel;
 module.exports.ModelName = ModelName;

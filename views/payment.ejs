@@ -15,7 +15,7 @@
             <div class="form-row">
               <% if(data.renter){ %>
                 <div class="form-group col-12">
-                  <label><span class="font-weight-bold">Email:</span> <%= data.renter %> </label>
+                  <label><span class="font-weight-bold">Email:</span> <%= data.renter.email %> </label>
                 </div>
               <% } else { %>
                 <div class="form-group form-col-6">
@@ -23,14 +23,14 @@
                   <input name="email" type="text" id="email" class="form-control" placeholder="Nhập email để đặt sân">
                 </div>
               <% } %>
-              <% if(data.sdt){ %>
+              <% if(data.renter.userName){ %>
                 <div class="form-group col-12">
-                  <label><span class="font-weight-bold">SDT:</span> <%= data.sdt %> </label>
+                  <label><span class="font-weight-bold">SDT:</span> <%= data.renter.userName %> </label>
                 </div>
               <% } else { %>
                 <div class="form-group form-col-6">
-                  <label for="phoneNumber">SDT:</label>
-                  <input name="phoneNumber" type="text" id="phoneNumber" class="form-control" placeholder="Yêu cầu số điện thoại để xác minh">
+                  <label for="userName">SDT:</label>
+                  <input name="userName" type="text" id="userName" class="form-control" placeholder="Nhập tên">
                 </div>
               <% } %>
             </div>
@@ -40,10 +40,10 @@
           <div class="col-6 col-md-4">
             <h5>Thông tin thanh toán:</h5>
             <hr>
-            <p><span class="mr-1 font-weight-bold">Sân:</span> <% if(data.sanbong){ %><%= data.sanbong.loaisan %><% } %></p>
-            <p><span class="mr-1 font-weight-bold">Ngày:</span> <%= data.ngayThue %></p>
-            <p><span class="mr-1 font-weight-bold">Thời gian:</span> <%= data.dattu %></p>
-            <p><span class="mr-1 font-weight-bold">Trong:</span> <%= data.thoiluongThue %> giờ</p>
+            <p><span class="mr-1 font-weight-bold">Sân:</span> <%= data.pitch.pitchName %></p>
+            <p><span class="mr-1 font-weight-bold">Ngày:</span> <%= data.rentDate.getDay() %></p>
+            <p><span class="mr-1 font-weight-bold">Thời gian:</span> <%= data.rentTime %></p>
+            <p><span class="mr-1 font-weight-bold">Trong:</span> <%= data.lasting %> giờ</p>
           </div>
 
           <!-- Payment way -->

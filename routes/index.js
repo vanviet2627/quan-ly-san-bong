@@ -29,29 +29,28 @@ router.get('/payment/ewallet/:type', (req, res) => {
   res.status(200).json({data: data});
 });
 
-// router.post('/payment', async(req, res, next) => {
-//   let info = req.body;
+router.post('/payment', async(req, res, next) => {
+  let info = req.body;
 
-//   let bill = {
-//     pitch: ,
-//     renter: ,
-//     rentDate: info.rentDate,
-//     rentTime: info.rentTime,
-//     lasting: info.lasting,
-//   }
-//   var newSchedule = new Schedule(bill)
-//   newSchedule.addSchedule()
-//     .then(rs => {
-//       console.log({"RS": rs});
-//       res.render('payment', {
-//         isLogin: true,
-//         userType: "admin",
-//         data: rs});
-//     }).catch(err => {
-//       console.log({"ERRR": err});
-//       res.render('error', {message: "ERROR 404", error: {status: err}});
-//     })
-// })
+  let bill = {
+    pitch: info.pitchSize,
+    renter: "viet@gmail.com",
+    rentDate: info.rentDate,
+    rentTime: info.rentTime,
+    lasting: info.lasting,
+  }
+  
+  var newSchedule = new Schedule(bill)
+  newSchedule.addSchedule()
+    .then(rs => {
+      res.render('payment', {
+        isLogin: true,
+        userType: "admin",
+        data: rs});
+    }).catch(err => {
+      res.render('error', {message: err.message, error: ''});
+    })
+})
 
 router.post('/payment/ewallet', (req, res) => {
   let typeOfEWallet = req.body.exampleRadios;
@@ -66,12 +65,12 @@ router.post('/payment/ewallet', (req, res) => {
 //                   User
 // ==========================================
 
-router.post('/login',async (req, res) => {
+router.post('/login', (req, res) => {
   let info = {
     email: req.body.email,
     password: req.body.password
   }
-  new User(info).findOneUser()
+  new User(info.email).findOneUserByEmail()
     .then(rs => {
       // User is not exist
       if(rs === null) { res.json({"exist": false, err}) }
@@ -106,7 +105,6 @@ router.post('/signup', (req, res) => {
   }
   let newUser = new User(info).addUser();
   newUser.then(rs => {
-    console.log(rs);
     res.json({"success": true});
   }).catch(err => {
     res.json({"sucess": false, "err": err});
@@ -171,6 +169,14 @@ router.post('/pitch', (req, res) => {
     }).catch(err => {
       res.status(500).json({err: err})
     })
+})
+
+router.get('/uncheckallpitch', (req, res) => {
+  new Pitch().uncheckAllPitch().then(rs => {
+    res.json("Uncheck All Pitch!");
+  }).catch(err => {
+    res.json("Uncheck All Pitch Failed!");
+  })
 })
 
 module.exports = router;

@@ -29,10 +29,10 @@ class UserClass {
             return await newUser.save();
         }
     }
-    async findOneUser() {
+    async findOneUserByEmail() { // Input: email _ Output: User Obj
         if(this.info){
             console.log(this.info)
-            return await UserModel.findOne({email: this.info.email});
+            return await UserModel.findOne({email: this.info});
         }
     }
     async getAllUser() {
