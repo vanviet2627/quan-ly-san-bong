@@ -1,8 +1,9 @@
 var express = require('express');
 var router = express.Router();
-const Pitch = require('../models/pitches.Model').PitchModel
-const Schedule = require('../models/schedule.Model')
-const User = require('../models/user.Model');
+const Pitch = require('../models/pitches.model');
+const PitchModel = require('../models/pitches.model').PitchModel;
+const Schedule = require('../models/schedule.model');
+const User = require('../models/user.model');
 const Admin = require('../models/admin.model');
 
 /* Get Home Page. */
@@ -88,7 +89,7 @@ router.post('/login',async (req, res) => {
 
 // Get User Page
 router.get('/user',async (req, res) => {
-  let dataSanBong = await Pitch.find({})
+  let dataSanBong = await PitchModel.find({})
   res.render('User', {
     isLogin: true,
     userType: "member",

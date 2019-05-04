@@ -1,19 +1,18 @@
 const mongoose = require('mongoose');
-const PitchModel = require("./pitch.model");
-const UserModel = require("./user.model");
 const Schema = mongoose.Schema;
-// var mongoosePaginate = require('mongoose-paginate');
-// var slug = require('mongoose-slug-updater');
-// mongoose.plugin(slug);
+const PitchModel = require("./pitches.model");
+const UserModel = require("./user.model");
+const PitchModelName = PitchModel.ModelName;
+const UserModelName = UserModel.modelName;
 
 var scheduleSchema = new Schema({
     pitch: {
         type: Schema.Types.ObjectId,
-        ref : PitchModel.ModelName
+        ref : PitchModelName
     },
     renter: {
         type: Schema.Types.ObjectId,
-        ref: UserModel.ModelName
+        ref: UserModelName
     },
     rentDate: {
         type: Date,
@@ -30,7 +29,6 @@ var scheduleSchema = new Schema({
     }
 })
 
-// schedule.plugin(mongoosePaginate);
 const ModelName = "Schedule";
 const ScheduleModel = mongoose.model(ModelName, scheduleSchema);
 module.exports = ScheduleModel;

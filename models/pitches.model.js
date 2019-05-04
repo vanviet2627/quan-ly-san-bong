@@ -56,4 +56,5 @@ module.exports = class PitchClass{
         return t
     }
 }
-module.exports.PitchModel = PitchModel 
+module.exports.PitchModel = PitchModel;
+module.exports.ModelName = ModelName;
