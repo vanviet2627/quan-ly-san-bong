@@ -2,11 +2,11 @@ let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
 // User basic info
-let userSchema = Schema({
+let UserSchema = Schema({
     email: {
         type: String,
         required: true,
-        // unique: true
+        unique: true
     },
     password: {
         type: String,
@@ -14,7 +14,6 @@ let userSchema = Schema({
     },
     userName: {
         type: String,
-        // unique: true
     },
     phoneNumber: Number,
     userType: { type: String, default: "member" }
@@ -30,10 +29,10 @@ class UserClass {
             return await newUser.save();
         }
     }
-    async findOneUser() {
+    async findOneUserByEmail() { // Input: email _ Output: User Obj
         if(this.info){
             console.log(this.info)
-            return await UserModel.findOne({email: this.info.email});
+            return await UserModel.findOne({email: this.info});
         }
     }
     async getAllUser() {
@@ -42,8 +41,8 @@ class UserClass {
 }
 
 let ModelName = 'User';
-let UserModel = mongoose.model(ModelName, userSchema);
+let UserModel = mongoose.model(ModelName, UserSchema);
 
+module.exports = UserClass;
 module.exports.UserModel = UserModel;
 module.exports.ModelName = ModelName;
-module.exports = UserClass;

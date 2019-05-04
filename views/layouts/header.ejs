@@ -6,20 +6,42 @@
                 <a href="/"><img src="/img/soccer-ball.svg" width="30" alt="LOGO" title="Trang chủ" /> <span style="font-size:1.2rem; color: white; vertical-align: middle; padding-left: 2px;">SÂN BÓNG MINI</span></a>
             </div>
             <nav id="nav-menu-container">
-                <% if(isLogin==true){ %>
-                    <ul class="nav-menu">
-                        <li class="dropdown open">
-                          <a class="dropdown-toggle text-white" data-toggle="dropdown">Quản lý tài khoản</a>
-                          <ul class="dropdown-menu">
-                            <li><a href="/user">Quản lý cá nhân</a></li>
-                            <li><a href="/profile">Thông tin cá nhân</a></li>
-                            <li><a href="/account">Đổi mật khẩu</a></li>
-                            <li><a href="/user/signout">Đăng Xuất</a></li>
-                          </ul>
-                        </li>
-                        <li class="nav-item"><a href="/history">Lịch sử</a></li>
-                        <a href="#finding" class="primary-btn text-uppercase ml-4 px-4">Đặt sân</a>	          
-                    </ul>
+                <% if(isLogin){ %>
+                    <% if(userType=="member"){ %>
+                        <ul class="nav-menu">
+                            <li class="dropdown open">
+                            <a class="dropdown-toggle text-white" data-toggle="dropdown">Quản lý tài khoản</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/user">Quản lý cá nhân</a></li>
+                                <li><a href="/user/profile">Thông tin cá nhân</a></li>
+                                <li><a href="/user/account">Đổi mật khẩu</a></li>
+                                <li><a href="/user/signout">Đăng Xuất</a></li>
+                            </ul>
+                            </li>
+                            <li class="nav-item"><a href="/history">Lịch sắp tới</a></li>
+                            <a href="/user" class="primary-btn text-uppercase ml-4 px-4">Đặt sân</a>	          
+                        </ul>
+                    <% } else if(userType=="admin") { %>
+                        <ul class="nav-menu">
+                            <li class="dropdown open">
+                            <a class="dropdown-toggle text-white" data-toggle="dropdown">Quản lý</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/admin/alluser">Quản lý người dùng</a></li>
+                                <li><a href="/admin/allschedule">Quản lý lịch đặt sân</a></li>
+                                <li><a href="/user/account">Đổi mật khẩu</a></li>
+                                <li><a href="/user/signout">Đăng Xuất</a></li>
+                            </ul>
+                            </li>
+                            <li class="nav-item"><a href="/history">Lịch sắp tới</a></li>
+                            <a href="#finding" class="primary-btn text-uppercase ml-4 px-4">Đặt sân</a>	          
+                        </ul>
+                    <% } else { %>
+                        <ul class="nav-menu">
+                            <li class="nav-item"><a href="/lichsan">Lịch sân</a></li>
+                            <li class="nav-item"><a href="#" data-toggle="modal" data-target="#signupModal">Đăng ký</a></li>
+                            <a href="#" data-toggle="modal" data-target="#signinModal" class="primary-btn text-uppercase ml-3">Đăng nhập</a>	          
+                        </ul>                        
+                    <% } %>
                 <% } else{ %>
                     <ul class="nav-menu">
                         <li class="nav-item"><a href="/lichsan">Lịch sân</a></li>

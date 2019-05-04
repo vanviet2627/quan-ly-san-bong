@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <!-- Head -->
+  <% include layouts/head %>
+  <body>
+    <!-- Navbar -->
+    <% include layouts/header %>
+    
+    <div class="container mt-5 pt-5">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Sân</th>
+            <th scope="col">Người đặt</th>
+            <th scope="col">Ngày đặt</th>
+            <th scope="col">Giờ đặt</th>
+            <th scope="col">Đặt trong</th>
+            <th scope="col">Ngày tạo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% data.forEach(schedule => { %>
+            <tr>
+              <th scope="row"><%= schedule.pitch.pitchName %></th>
+              <td><%= schedule.renter.userName %></td>
+              <td><%= schedule.rentDate.toLocaleDateString() %></td>
+              <td><%= schedule.rentTime %></td>
+              <td><%= schedule.lasting %> giờ</td>
+              <td><%= schedule.createTime.toLocaleString() %></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+
+		<!-- footer -->
+		<% include layouts/footer %>
+    <!-- Script -->
+    <% include layouts/script %>
+  </body>
+</html>
