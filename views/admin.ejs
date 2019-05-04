@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <!-- Head -->
+  <% include layouts/head %>
+  <body>
+    <!-- Navbar -->
+    <% include layouts/header %>
+    
+    <div class="container">
+      <!-- <% if(!err) { %> -->
+        <!-- <% if(users) { %> -->
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Username</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone number</th>
+                <th scope="col">User type</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% for(var i=0, i < users.length; i++) { %>
+              <tr>
+                <th scope="row"><%= users[i].userName %></th>
+                <td><%= users[i].email %></td>
+                <td><%= users[i].phoneNumber %></td>
+                <td><%= users[i].userType %></td>
+              </tr>
+              <% } %>
+            </tbody>
+          </table>
+        <!-- <% } else { %>
+          <p>User is empty</p>
+        <% } %> -->
+      <!-- <% } else { %>
+        <p>Err</p>
+      <% } %> -->
+    </div>
+
+		<!-- footer -->
+		<% include layouts/footer %>
+    <!-- Script -->
+    <% include layouts/script %>
+  </body>
+</html>

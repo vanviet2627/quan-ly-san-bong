@@ -1,4 +1,3 @@
-// Đặt Sân Bóng
 const db = require('../configs/connectDatabase');
 const mongoose = require('mongoose');
 var slug = require('mongoose-slug-updater');
@@ -30,22 +29,21 @@ var schedule= new Schema({
     }
 })
 
+let ModelName = 'Schedule';
 schedule.plugin(mongoosePaginate);
-const ScheduleModel = mongoose.model('schedule', schedule);
+const ScheduleModel = mongoose.model(ModelName, schedule);
 
-module.exports = class lichDatSan_Database{
+module.exports = class Schedule {
     constructor(data){
         this.data = data
     }
     // xem Tất cả Lịch đặt Sân 
-    async view_schedule(){
-        let myData = await ScheduleModel.find({})
-                                     .sort({ngaytao : -1})
-        return myData
-
+    async viewSchedule(){
+        let myData = await ScheduleModel.find({}).sort({ngaytao : -1});
+        return myData;
     }
     // thêm lịch đặt sân
-    async add_schedule(){
+    async addSchedule(){
         if(this.data){
             let newSchedule = new ScheduleModel(this.data)
             let t = await newSchedule.save();
