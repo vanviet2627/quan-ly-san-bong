@@ -1,6 +1,3 @@
-/** Tam thoi chua dung */
-
-const db = require('../configs/connectDatabase');
 const mongoose = require('mongoose');
 var slug = require('mongoose-slug-updater');
 mongoose.plugin(slug);
@@ -8,8 +5,13 @@ mongoose.plugin(slug);
 var mongoosePaginate = require('mongoose-paginate');
 const Schema = mongoose.Schema;
 
-var sanbong = new Schema({
-    loaisan: { // 5 nguoi || 7 nguoi || 12 nguoi
+var Pitch = new Schema({
+    pitchName: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    pitchSize: { // 5 nguoi || 7 nguoi || 12 nguoi
         type : Number,
     },
     status: { // (!rented) ? 0 : 1
@@ -18,23 +20,17 @@ var sanbong = new Schema({
     },
     renter: [
         {type: Schema.Types.ObjectId, ref : "User"}
-    ],
-    ngaytao: {
-        type: Date,
-        default: Date.now(),
-    },
-    images: {
-        type: String
-    }
+    ]
 })
+let ModelName = 'Pitch';
+Pitch.plugin(mongoosePaginate);
+const PitchModel = mongoose.model(ModelName, Pitch);
 
-sanbong.plugin(mongoosePaginate);
-const PitchModel = mongoose.model('Pitches', sanbong);
-module.exports =class Pitches_Database{
+module.exports = class PitchClass{
     constructor(data){
         this.data = data
     }
-    async save_pitches() {
+    async addPitches() {
         let myData = new PitchModel(this.data);
         return await myData.save()
     }
@@ -60,4 +56,4 @@ module.exports =class Pitches_Database{
         return t
     }
 }
-module.exports.PitchModel=PitchModel 
+module.exports.PitchModel = PitchModel 
