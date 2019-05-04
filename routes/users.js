@@ -28,6 +28,28 @@ router.post('/login', (req, res) => {
     })
 })
 
+// router.post('/signup', (req, res) => {
+//   let info = {
+//     email: req.body.email,
+//     password: req.body.password
+//   }
+//   new User(info.email).findOneUserByEmail()
+//     .then(rs => {
+//       // User is not exist
+//       if(rs === null) { res.json({"exist": false, err}) }
+
+//       // Check passwd
+//       // Assume that password has been encrypted =))
+//       if(info.password === rs.password) {
+//         res.json({"acp": 1, email: rs.email});
+//       } else {
+//         res.json({"acp": 0, "mess": "Tài khoản hoặc mật khẩu không đúng."});
+//       }
+//     }).catch(err => {
+//       res.json({"acp": 0, "mess": "Tài khoản hoặc mật khẩu không đúng."});
+//     })
+// })
+
 // Get User Page
 router.get('/', (req, res) => {
   res.render('user', {
@@ -59,6 +81,7 @@ router.get('/profile', (req, res) => {
 router.get('/account', (req, res) => {
   res.render('account', {
     isLogin: true,
+    userType: "member"
   });
 });
   

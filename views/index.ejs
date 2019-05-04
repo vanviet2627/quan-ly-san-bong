@@ -4,6 +4,7 @@
 <body>
 	<% include layouts/header %>
 	<input type="hidden" id="islogin" value="<%= isLogin%>">
+
 	<!-- Start signin Modal area -->
 	<div class="modal fade" id="signinModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	  <div class="modal-dialog" role="document">
@@ -15,7 +16,6 @@
 	        </button>
 	      </div>
 	      <div class="modal-body mx-3">
-
           <div id='thongbao'>
             <% if(info.mess){%>
               <div class="alert alert-danger" role="alert">
@@ -26,7 +26,7 @@
 				  
 	        <form id='login'>
 	        	<div class="form-group">
-							<label for="email">Email hoặc SĐT:</label>
+							<label for="email">Email:</label>
 							<input type="text" class="form-control" id="email" name="email" autofocus>
 						</div>
 						<div class="form-group">
@@ -52,10 +52,10 @@
 					</button>
 				</div>
 				<div class="modal-body mx-3">
-					<form id="signup">
+					<form id="signup" action="/signup" method="POST">
 						<div class="form-group">
-							<label for="phoneNumber">Số điện thoại:</label>
-							<input type="text" class="form-control" id="phoneNumber">
+							<label for="email">Email:</label>
+							<input type="email" class="form-control" id="email">
 						</div>
 						<div class="form-group">
 							<label for="password">Mật khẩu:</label>

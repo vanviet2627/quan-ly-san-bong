@@ -6,7 +6,6 @@ var express = require('express');
 var router = express.Router();
 const Schedule = require('../models/schedule.model');
 
-
 // QR API link
 router.get('/ewallet/:type', (req, res) => {
   let type = req.params.type;

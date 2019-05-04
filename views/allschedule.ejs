@@ -21,12 +21,12 @@
         <tbody>
           <% data.forEach(schedule => { %>
             <tr>
-              <th scope="row"><%= schedule.pitch %></th>
-              <td><%= schedule.renter %></td>
-              <td><%= schedule.rentDate %></td>
+              <th scope="row"><%= schedule.pitch.pitchName %></th>
+              <td><%= schedule.renter.userName %></td>
+              <td><%= schedule.rentDate.toLocaleDateString() %></td>
               <td><%= schedule.rentTime %></td>
               <td><%= schedule.lasting %> giờ</td>
-              <td><%= schedule.createTime %></td>
+              <td><%= schedule.createTime.toLocaleString() %></td>
             </tr>
           <% }) %>
         </tbody>

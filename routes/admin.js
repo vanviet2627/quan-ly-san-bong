@@ -24,7 +24,9 @@ router.get('/alluser', (req, res) => {
 router.get('/allschedule', (req, res) => {
   let data = new Schedule().getAllSchedule();
   data.then(schedule => {
-    res.render('alluser', {
+    console.log(schedule);
+    
+    res.render('allschedule', {
       isLogin: true,
       userType: "admin",
       data: schedule
