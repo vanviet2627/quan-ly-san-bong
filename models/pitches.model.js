@@ -30,7 +30,7 @@ module.exports = class PitchClass{
     constructor(data){
         this.data = data
     }
-    async addPitches() {
+    async addPitch() {
         let myData = new PitchModel(this.data);
         return await myData.save()
     }

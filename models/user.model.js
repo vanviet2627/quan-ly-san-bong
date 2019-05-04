@@ -14,51 +14,35 @@ let UserSchema = Schema({
     },
     userName: {
         type: String,
-        unique: true
     },
-    phoneNumber: {
-        type: Number,
-        required: true,
-        unique: true
-    },
-    registerDate: { type: Date, default: Date.now },
-    userType: { type: Number, default: 1 },
-    isActive: { type: Boolean, default: true },
+    phoneNumber: Number,
+    userType: { type: String, default: "member" }
 })
 
-// User role
-let UserType = [
-    { id: 0, name: 'banned' },
-    { id: 1, name: 'member' },
-    { id: 3, name: 'admin' }
-]
-
 class UserClass {
-    constructor(data){
-        this.data = data;
-    };
-    async addUserByPhoneNumber() {
-        if(this.data){
-            let newUser = new UserModel(this.data);
-            await newUser.save()
-                .then(rs => { return {"success": true}})
-                .catch(err => { return {"success": false, "err": err}})
+    constructor(info){
+        this.info = info;
+    }
+    async addUser() {
+        if(this.info){
+            let newUser = new UserModel(this.info);
+            return await newUser.save();
         }
+    }
+    async findOneUser() {
+        if(this.info){
+            console.log(this.info)
+            return await UserModel.findOne({email: this.info.email});
+        }
+    }
+    async getAllUser() {
+        return await UserModel.find({});
     }
 }
 
-// Notification
-
-// Login google
-
-// Login facebook
-
-let ModelName = 'UserModel';
+let ModelName = 'User';
 let UserModel = mongoose.model(ModelName, UserSchema);
 
+module.exports = UserClass;
+module.exports.UserModel = UserModel;
 module.exports.ModelName = ModelName;
-module.exports.UserType = UserType;
-module.exports.UserClass = UserClass; 
-module.exports = UserModel; 
-
-

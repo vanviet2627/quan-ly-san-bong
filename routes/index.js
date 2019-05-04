@@ -29,28 +29,29 @@ router.get('/payment/ewallet/:type', (req, res) => {
   res.status(200).json({data: data});
 });
 
-router.post('/payment', async(req, res, next) => {
-  let info = req.body;
-  let bill = {
-    sanbong: info.loaisan,
-    renter: "user@gmail.com",
-    ngayThue: info.ngay,
-    dattu: info.gio,
-    thoiluongThue: info.thoiluong,
-  }
-  var newSchedule = new Schedule(bill)
-  newSchedule.addSchedule()
-    .then(rs => {
-      console.log({"RS": rs});
-      res.render('payment', {
-        isLogin: true,
-        userType: "admin",
-        data: rs});
-    }).catch(err => {
-      console.log({"ERRR": err});
-      res.render('error', {message: "ERROR 404", error: {status: err}});
-    })
-})
+// router.post('/payment', async(req, res, next) => {
+//   let info = req.body;
+
+//   let bill = {
+//     pitch: ,
+//     renter: ,
+//     rentDate: info.rentDate,
+//     rentTime: info.rentTime,
+//     lasting: info.lasting,
+//   }
+//   var newSchedule = new Schedule(bill)
+//   newSchedule.addSchedule()
+//     .then(rs => {
+//       console.log({"RS": rs});
+//       res.render('payment', {
+//         isLogin: true,
+//         userType: "admin",
+//         data: rs});
+//     }).catch(err => {
+//       console.log({"ERRR": err});
+//       res.render('error', {message: "ERROR 404", error: {status: err}});
+//     })
+// })
 
 router.post('/payment/ewallet', (req, res) => {
   let typeOfEWallet = req.body.exampleRadios;
@@ -90,7 +91,7 @@ router.post('/login',async (req, res) => {
 // Get User Page
 router.get('/user',async (req, res) => {
   let dataSanBong = await PitchModel.find({})
-  res.render('User', {
+  res.render('user', {
     isLogin: true,
     userType: "member",
     info: {},
@@ -171,6 +172,5 @@ router.post('/pitch', (req, res) => {
       res.status(500).json({err: err})
     })
 })
-
 
 module.exports = router;
