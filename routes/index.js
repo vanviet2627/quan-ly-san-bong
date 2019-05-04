@@ -120,9 +120,6 @@ router.get('/account', (req, res) => {
 //                   Admin
 // ==========================================
 
-router.get('/admin', (req, res) => {
-  res.render('admin');
-});
 
 router.get('/alluser', (req, res) => {
   let user = new User();
@@ -134,8 +131,8 @@ router.get('/alluser', (req, res) => {
     })
 });
 
-router.get('/Admin', (req, res) => {
-  res.render('Admin', {
+router.get('/admin', (req, res) => {
+  res.render('admin', {
     isLogin: true
   });
 });
