@@ -35,7 +35,7 @@ class ScheduleClass {
         this.data = data;
     }
     async getAllSchedule() {
-        return await ScheduleModel.find({}).sort({createTime: -1})
+        return await ScheduleModel.find({}).populate('pitch').populate('renter').sort({createTime: -1})
     }
     async addSchedule() {
         if(this.data.rentDate && this.data.rentTime && this.data.renter && this.data.pitch && this.data.lasting) {

@@ -99,40 +99,26 @@
 				<div class="col-6 offset-3 mt-5">
 					<div class="my-4 mx-2">
 						<h2 class="mb-3">Đặt sân</h2>
-						<form id='datsan' action='/datsan' method='POST'>
-						  <div class="form-row">
-						    <div class="form-group col-md-6">
-						      <label for="inputTypeOfField">Chọn loại sân:</label>
-						      <select id="inputTypeOfField" class="form-control" name="loaisan">
-										<%if(data){
-											data.forEach(t => {%>
-											<option value='<%=t.id%>'>
-												<% if(t.loaisan == 5){ %>
-													5 Người
-												<% }else if(t.loaisan == 7){ %>
-													7 Người
-												<% }else{ %>
-													12 Người
-												<% } %>
-											</option>
-											<% });
-										}else{%>
-												<option>5 Người</option>
-												<option>7 Người</option>
-												<option>12 Người</option>
-										<%}%>
-									</select>
-						    </div>
-						    <div class="form-group col-md-6">
-						      <label for="date">Chọn ngày:</label>
-						      <input type="date" class="form-control" id="date" name="ngay" placeholder="">
-						    </div>
-						  </div>
-						  <div class="form-row">
-						    <div class="form-group col-md-6">
-						      <label for="inputDateFrom">Đặt từ:</label>
-						      <select id="inputDateFrom" class="form-control" name="gio">
-										<option selected value="5:00">05:00</option>
+						<form id='datsan' action='/payment' method='POST'>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="inputTypeOfField">Chọn loại sân:</label>
+                  <select id="inputTypeOfField" class="form-control" name="pitchSize">
+										<option selected value="5">5 Người</option>
+										<option value="7">7 Người</option>
+										<option value="12">12 Người</option>
+                  </select>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="date">Chọn ngày:</label>
+                  <input type="date" class="form-control" id="date" name="rentDate">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="inputDateFrom">Đặt từ:</label>
+                  <select id="inputDateFrom" class="form-control" name="rentTime">
+                    <option selected value="5:00">05:00</option>
 										<option value='5:30'>05:30</option>
 										<option value='6:00'>06:00</option>
 										<option value='6.30'>06:30</option>
@@ -168,23 +154,21 @@
 										<option value='21:30'>21:30</option>
 										<option value='22:00'>22:00</option>
 										<option value='22:30'>22:30</option>
-						      </select>
-						    </div>
-						    <div class="form-group col-md-6">
-						      <label for="inputLasting">Đặt trong:</label>
-						      <select id="inputLasting" class="form-control" name="thoiluong">
-						        <option selected value='1'>1 giờ</option>
-						        <option value='1.5'>1.5 giờ</option>
-						        <option value='2'>2 giờ</option>
-						      </select>
-						    </div>
-						  </div>
-							<div id ='changes'>
-								<button type="submit" class="primary-btn py-2 text-uppercase d-block mx-auto mt-1">Đặt sân</button>
-							</div>
-							
-						  
-						</form>
+                  </select>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="inputLasting">Đặt trong:</label>
+                  <select id="inputLasting" class="form-control" name="lasting">
+                    <option selected value='1'>1 giờ</option>
+                    <option value='1.5'>1.5 giờ</option>
+                    <option value='2'>2 giờ</option>
+                  </select>
+                </div>
+              </div>
+              <div id ='changes'>
+                <button type="submit" class="primary-btn py-2 text-uppercase d-block mx-auto mt-1">Đặt sân</button>
+              </div>
+            </form>
 					</div>
 				</div>
 			</div>

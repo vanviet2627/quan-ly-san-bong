@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <!-- Head -->
+  <% include layouts/head %>
+  <body>
+    <!-- Navbar -->
+    <% include layouts/header %>
+    
+    <div class="container mt-5 pt-5">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Username</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone number</th>
+            <th scope="col">User type</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% data.forEach(user => { %>
+            <tr>
+              <th scope="row"><%= user.userName %></th>
+              <td><%= user.email %></td>
+              <td><%= user.phoneNumber %></td>
+              <td><%= user.userType %></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+
+		<!-- footer -->
+		<% include layouts/footer %>
+    <!-- Script -->
+    <% include layouts/script %>
+  </body>
+</html>

@@ -11,7 +11,7 @@ $(document).ready(function () {
         }
         $.ajax({
             type: "POST",
-            url: "/login",
+            url: "/user/login",
             data: data,
             success: function (response) {
                 if(response.acp == 0){
