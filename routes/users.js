@@ -28,27 +28,20 @@ router.post('/login', (req, res) => {
     })
 })
 
-// router.post('/signup', (req, res) => {
-//   let info = {
-//     email: req.body.email,
-//     password: req.body.password
-//   }
-//   new User(info.email).findOneUserByEmail()
-//     .then(rs => {
-//       // User is not exist
-//       if(rs === null) { res.json({"exist": false, err}) }
-
-//       // Check passwd
-//       // Assume that password has been encrypted =))
-//       if(info.password === rs.password) {
-//         res.json({"acp": 1, email: rs.email});
-//       } else {
-//         res.json({"acp": 0, "mess": "Tài khoản hoặc mật khẩu không đúng."});
-//       }
-//     }).catch(err => {
-//       res.json({"acp": 0, "mess": "Tài khoản hoặc mật khẩu không đúng."});
-//     })
-// })
+router.post('/signup', (req, res) => {
+  let info = {
+    email: req.body.email,
+    password: req.body.password
+  }
+  new User(info.email).addUser()
+    .then(rs => {
+      // User is not exist
+      if(rs === null) { res.json({exist: false, err}); return; }
+        res.send("Tạo tài khoản thành công!");
+    }).catch(err => {
+      res.json({"acp": 0, "mess": "Tạo tài khoản không thành công!"});
+    })
+})
 
 // Get User Page
 router.get('/', (req, res) => {
