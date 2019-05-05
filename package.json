@@ -23,7 +23,7 @@
     "qrcode-generator": "^1.4.3"
   },
   "devDependencies": {
-    "node-sass": "^4.11.0",
+    "node-sass": "^4.12.0",
     "nodemon": "^1.18.11"
   }
 }
