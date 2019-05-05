@@ -6,7 +6,11 @@ const passport = require('passport');
 
 // login, logout & signup. Return as authenticate API
 router.post('/login', (req, res) => {
-  passport.authenticate('local')(req, res, next);
+  passport.authenticate('local', {
+    successRedirect: '/user',
+    failureRedirect: '/',
+    failureMessage: true
+  });
 
   // let info = {
   //   email: req.body.email,
