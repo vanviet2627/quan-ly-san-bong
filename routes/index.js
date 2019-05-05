@@ -1,8 +1,10 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const passport = require('passport');
+const { forwardAuthenticated, ensureAuthenticated } = require('../utils/auth');
 
 /* Get Home Page. */
-router.get('/', (req, res, next) => {
+router.get('/', forwardAuthenticated, (req, res, next) => {
   res.render('index', {
     isLogin: false,
     info: {},

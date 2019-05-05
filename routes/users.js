@@ -1,56 +1,33 @@
 var express = require('express');
 var router = express.Router();
 const User = require('../models/user.model');
+const { forwardAuthenticated, ensureAuthenticated } = require('../utils/auth');
+const passport = require('passport');
 
-// ==========================================
-//                   User
-// ==========================================
-
+// login, logout & signup. Return as authenticate API
 router.post('/login', (req, res) => {
-  let info = {
-    email: req.body.email,
-    password: req.body.password
-  }
-  new User(info.email).findOneUserByEmail()
-    .then(rs => {
-      // User is not exist
-      if(rs === null) { res.json({"exist": false, err}) }
+  passport.authenticate('local')(req, res, next);
 
-      // Check passwd
-      // Assume that password has been encrypted =))
-      if(info.password === rs.password) {
-        res.json({"acp": 1, email: rs.email});
-      } else {
-        res.json({"acp": 0, "mess": "Tài khoản hoặc mật khẩu không đúng."});
-      }
-    }).catch(err => {
-      res.json({"acp": 0, "mess": "Tài khoản hoặc mật khẩu không đúng."});
-    })
+  // let info = {
+  //   email: req.body.email,
+  //   password: req.body.password
+  // }
+  // new User(info.email).findOneUserByEmail()
+  //   .then(rs => {
+  //     // User is not exist
+  //     if(rs === null) { res.json({"exist": false, err}) }
+
+  //     // Check passwd
+  //     // Assume that password has been encrypted =))
+  //     if(info.password === rs.password) {
+  //       res.json({"acp": 1, email: rs.email});
+  //     } else {
+  //       res.json({"acp": 0, "mess": "Tài khoản hoặc mật khẩu không đúng."});
+  //     }
+  //   }).catch(err => {
+  //     res.json({"acp": 0, "mess": "Tài khoản hoặc mật khẩu không đúng."});
+  //   })
 })
-
-router.post('/signup', (req, res) => {
-  let info = {
-    email: req.body.email,
-    password: req.body.password
-  }
-  new User(info.email).addUser()
-    .then(rs => {
-      // User is not exist
-      if(rs === null) { res.json({exist: false, err}); return; }
-        res.send("Tạo tài khoản thành công!");
-    }).catch(err => {
-      res.json({"acp": 0, "mess": "Tạo tài khoản không thành công!"});
-    })
-})
-
-// Get User Page
-router.get('/', (req, res) => {
-  res.render('user', {
-    isLogin: true,
-    userType: "member",
-    info: {}
-  });
-});
 
 router.post('/signup', (req, res) => {
   let info = {
@@ -65,32 +42,34 @@ router.post('/signup', (req, res) => {
   })
 });
 
-router.get('/profile', (req, res) => {
+// user page menu
+router.get('/', ensureAuthenticated, (req, res) => {
+  res.render('user', {
+    isLogin: true,
+    userType: "member",
+    info: {}
+  });
+});
+
+router.get('/profile', ensureAuthenticated, (req, res) => {
   res.render('profile', {
     isLogin: true,
     userType: "member"
   });
 });
 
-router.get('/account', (req, res) => {
-  res.render('account', {
+router.get('/changepassword', ensureAuthenticated, (req, res) => {
+  res.render('changepassword', {
     isLogin: true,
-    userType: "member"
-  });
-});
-  
-router.get('/account', (req, res) => {
-  res.render('account', {
-    isLogin: true,
+    userType: "member",
     info: {},
     data : {}
-                        });
+  });
 });
 
-router.get('/signout', (req, res) => {
-  // Handle signout
-  res.redirect('/');
-})
+router.get('/logout', (req, res) => {
+  req.logout();
+  res.redirect('../');
+});
 
 module.exports = router;
-
