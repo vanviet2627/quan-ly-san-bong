@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
-// const mlabURI = 'mongodb+srv://quanlysanbong:mTVUM1cd98aybmOC@cluster0-nzcja.mongodb.net/quanlysanbong?retryWrites=true';
-const mlabURI = 'mongodb://localhost:27017/quanlysanbong';
+const mlabURI = 'mongodb+srv://quanlysanbong:mTVUM1cd98aybmOC@cluster0-nzcja.mongodb.net/quanlysanbong?retryWrites=true';
+// const mlabURI = 'mongodb://localhost:27017/quanlysanbong';
 
 class DatabaseConnect {
   constructor() {

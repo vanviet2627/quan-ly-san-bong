@@ -105,7 +105,9 @@
                         <option value='2'>2 giờ</option>
                       </select>
                     </div>
-                    <input type="hidden" value="<%= userInfo.email %>" name="email">
+                    <% if(userInfo) { %>
+                      <input type="hidden" value="<%= userInfo.email %>" name="email">
+                    <% } %>
                   </div>
                   <div id ='changes'>
                     <button type="submit" class="primary-btn py-2 text-uppercase d-block mx-auto mt-1">Đặt sân</button>
