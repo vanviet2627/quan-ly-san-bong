@@ -75,7 +75,7 @@ router.get('/history',ensureAuthenticated,async (req, res) => {
   // random 1 id user 
 
   let idUser = t[1].id
-  let myData =await Schedule.ScheduleModel.find({renter:idUser}).sort({createTime:-1}).populate('pitch')  
+  let myData =await Schedule.ScheduleModel.find({renter:idUser}).sort({createTime:-1}).populate('pitch').populate('renter')
   res.render('userschedule', {
     isLogin: true,
     userType: "member",
