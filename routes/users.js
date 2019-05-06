@@ -3,7 +3,7 @@ var router = express.Router();
 const User = require('../models/user.model');
 const { forwardAuthenticated, ensureAuthenticated } = require('../utils/auth');
 const passport = require('passport');
-
+const Schedule =require('../models/schedule.model');
 // login, logout & signup. Return as authenticate API
 router.post('/login', (req, res) => {
   passport.authenticate('local', {
@@ -70,7 +70,19 @@ router.get('/changepassword', ensureAuthenticated, (req, res) => {
     data : {}
   });
 });
+router.get('/history',ensureAuthenticated,async (req, res) => {
+  let t = await User.UserModel.find()
+  // random 1 id user 
 
+  let idUser = t[1].id
+  let myData =await Schedule.ScheduleModel.find({renter:idUser}).sort({createTime:-1}).populate('pitch')  
+  res.render('userschedule', {
+    isLogin: true,
+    userType: "member",
+    info: {},
+    data : myData,
+  });
+});
 router.get('/logout', (req, res) => {
   req.logout();
   res.redirect('../');

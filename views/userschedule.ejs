@@ -20,7 +20,8 @@
           </tr>
         </thead>
         <tbody>
-          <% data.forEach(schedule => { %>
+          <%if(data){
+            data.forEach(schedule => { %>
             <tr>
               <th scope="row"><%= schedule.pitch.pitchName %></th>
               <td><%= schedule.renter.userName %></td>
@@ -29,7 +30,7 @@
               <td><%= schedule.lasting %> giờ</td>
               <td><%= schedule.createTime.toLocaleString() %></td>
             </tr>
-          <% }) %>
+          <% })} %>
         </tbody>
       </table>
       <!-- End content -->
