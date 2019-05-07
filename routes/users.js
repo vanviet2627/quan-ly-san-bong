@@ -84,7 +84,8 @@ router.post('/changepassword', (req, res) => {
 router.get('/history', async (req, res) => {
   let t = await User.UserModel.find()
   // random 1 id user 
-
+  console.log(t);
+  
   let idUser = t[1].id
   let myData =await Schedule.ScheduleModel.find({renter:idUser}).sort({createTime:-1}).populate('pitch').populate('renter')
   res.render('userschedule', {
