@@ -71,6 +71,18 @@ router.get('/changepassword', ensureAuthenticated, (req, res) => {
   });
 });
 
+router.post('/changepassword', (req, res) => {
+  let info = {
+    password: req.body.password,
+    newPassword: req.body.newPassword,
+    reNewPassword: req.body.reNewPassword,
+  }
+  if(info.newPassword !== info.reNewPassword) {
+    return res.json({acp: 0, mess: "Mật khẩu mới không khớp nhau!"});
+  }
+  res.json({acp: 1});
+});
+
 router.get('/logout', (req, res) => {
   req.logout();
   res.redirect('../');
