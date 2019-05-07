@@ -1,7 +1,3 @@
-// ==========================================
-//                   Admin
-// ==========================================
-
 var express = require('express');
 var router = express.Router();
 const Pitch = require('../models/pitches.model');

@@ -1,36 +1,29 @@
 var express = require('express');
 var router = express.Router();
 const User = require('../models/user.model');
-const { forwardAuthenticated, ensureAuthenticated } = require('../utils/auth');
-const passport = require('passport');
-const Schedule =require('../models/schedule.model');
+const Schedule = require('../models/schedule.model');
+
 // login, logout & signup. Return as authenticate API
 router.post('/login', (req, res) => {
-  passport.authenticate('local', {
-    successRedirect: '/user',
-    failureRedirect: '/',
-    failureMessage: true
-  });
+  let info = {
+    email: req.body.email,
+    password: req.body.password
+  }
+  new User(info.email).findOneUserByEmail()
+    .then(rs => {
+      // User is not exist
+      if(rs === null) { res.json({"exist": false, err}) }
 
-  // let info = {
-  //   email: req.body.email,
-  //   password: req.body.password
-  // }
-  // new User(info.email).findOneUserByEmail()
-  //   .then(rs => {
-  //     // User is not exist
-  //     if(rs === null) { res.json({"exist": false, err}) }
-
-  //     // Check passwd
-  //     // Assume that password has been encrypted =))
-  //     if(info.password === rs.password) {
-  //       res.json({"acp": 1, email: rs.email});
-  //     } else {
-  //       res.json({"acp": 0, "mess": "Tài khoản hoặc mật khẩu không đúng."});
-  //     }
-  //   }).catch(err => {
-  //     res.json({"acp": 0, "mess": "Tài khoản hoặc mật khẩu không đúng."});
-  //   })
+      // Check passwd
+      // Assume that password has been encrypted =))
+      if(info.password === rs.password) {
+        res.json({"acp": 1, email: rs.email});
+      } else {
+        res.json({"acp": 0, "mess": "Tài khoản hoặc mật khẩu không đúng."});
+      }
+    }).catch(err => {
+      res.json({"acp": 0, "mess": "Tài khoản hoặc mật khẩu không đúng."});
+    })
 })
 
 router.post('/signup', (req, res) => {
@@ -47,7 +40,7 @@ router.post('/signup', (req, res) => {
 });
 
 // user page menu
-router.get('/', ensureAuthenticated, (req, res) => {
+router.get('/', (req, res) => {
   res.render('user', {
     isLogin: true,
     userType: "member",
@@ -55,24 +48,25 @@ router.get('/', ensureAuthenticated, (req, res) => {
   });
 });
 
-router.get('/profile', ensureAuthenticated,async (req, res) => {
+router.get('/profile', async (req, res) => {
   let t = await User.UserModel.find()
   let data = t[1]
   
-  res.render('profile', {
+  res.render('userschedule', {
     isLogin: true,
     userType: "member",
     data : data
   });
 });
 
-router.get('/changepassword', ensureAuthenticated, (req, res) => {
+router.get('/changepassword', (req, res) => {
   res.render('changepassword', {
     isLogin: true,
     userType: "member",
     info: {},
     data : {}
   });
+});
 
 router.post('/changepassword', (req, res) => {
   let info = {
@@ -81,12 +75,13 @@ router.post('/changepassword', (req, res) => {
     reNewPassword: req.body.reNewPassword,
   }
   if(info.newPassword !== info.reNewPassword) {
-    return res.json({acp: 0, mess: "Mật khẩu mới không khớp nhau!"});
+    return res.json({acp: 0, mess: "Mật khẩu mới không trùng khớp!"});
   }
   res.json({acp: 1});
 
 });
-router.get('/history',ensureAuthenticated,async (req, res) => {
+
+router.get('/history', async (req, res) => {
   let t = await User.UserModel.find()
   // random 1 id user 
 
@@ -99,6 +94,7 @@ router.get('/history',ensureAuthenticated,async (req, res) => {
     data : myData,
   });
 });
+
 router.get('/logout', (req, res) => {
   req.logout();
   res.redirect('../');
