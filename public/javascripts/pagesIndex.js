@@ -17,11 +17,10 @@ $(document).ready(function () {
                 if(response.acp == 0){
                     $('#thongbao').html('<div class="alert alert-danger" role="alert">'+response.mess+'</div>');
                 }else{
-                    window.sessionStorage.setItem("sessionLogin", response.email);
-                    window.location.href = '/user/';
+                    // window.sessionStorage.setItem("sessionLogin", response.email);
+                    // window.location.href = '/user/';
                 }
             }
         });
     });
-    
 });

@@ -103,3 +103,4 @@ const ModelName = "Schedule";
 const ScheduleModel = mongoose.model(ModelName, scheduleSchema);
 
 module.exports = ScheduleClass;
+module.exports.ScheduleModel = ScheduleModel;
