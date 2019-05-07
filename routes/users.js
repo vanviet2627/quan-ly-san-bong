@@ -94,19 +94,25 @@ router.get('/profile', (req, res) => {
   });
 });
 
-router.get('/account', (req, res) => {
-  res.render('account', {
+router.get('/changepassword', (req, res) => {
+  res.render('changepassword', {
     isLogin: true,
-    userType: "member"
-  });
-});
-  
-router.get('/account', (req, res) => {
-  res.render('account', {
-    isLogin: true,
+    userType: "member",
     info: {},
     data : {}
-                        });
+  });
+});
+
+router.post('/changepassword', (req, res) => {
+  let info = {
+    password: req.body.password,
+    newPassword: req.body.newPassword,
+    reNewPassword: req.body.reNewPassword,
+  }
+  if(info.newPassword !== info.reNewPassword) {
+    return res.json({acp: 0, mess: "Mật khẩu mới không khớp nhau!"});
+  }
+  res.json({acp: 1});
 });
 
 router.get('/signout', (req, res) => {
