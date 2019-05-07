@@ -55,10 +55,14 @@ router.get('/', ensureAuthenticated, (req, res) => {
   });
 });
 
-router.get('/profile', ensureAuthenticated, (req, res) => {
+router.get('/profile', ensureAuthenticated,async (req, res) => {
+  let t = await User.UserModel.find()
+  let data = t[1]
+  
   res.render('profile', {
     isLogin: true,
-    userType: "member"
+    userType: "member",
+    data : data
   });
 });
 
