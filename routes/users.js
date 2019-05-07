@@ -99,7 +99,9 @@ router.post('/changepassword', ensureAuthenticated, (req, res) => {
 
 });
 
-router.get('/history', ensureAuthenticated, async (req, res) => {
+router.get('/history', ensureAuthenticated, (req, res) => {
+  console.log(req.user);
+  
   new Schedule( req.user._id ).getScheduleById().then(userSchedules => {
     console.log({SCHEDULE: userSchedules});
     
