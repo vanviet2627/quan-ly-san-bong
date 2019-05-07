@@ -16,7 +16,8 @@ let UserSchema = Schema({
         type: String,
     },
     phoneNumber: Number,
-    userType: { type: String, default: "member" }
+    userType: { type: String, default: "member" },
+    registerDate: Date.now()
 })
 UserSchema.methods.validPassword = function(password) {
     return ( this.password === password );

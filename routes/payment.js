@@ -17,10 +17,10 @@ router.post('/', ensureAuthenticated, async(req, res, next) => {
   let info = req.body;
   let bill = {
     pitch: info.pitchSize,
-    renter: req.user.email,
+    renter: req.user._id,
     rentDate: info.rentDate,
     rentTime: info.rentTime,
-    lasting: info.lasting,
+    lasting: info.lasting
   }
   
   new Schedule(bill).addSchedule().then(schedule => {
