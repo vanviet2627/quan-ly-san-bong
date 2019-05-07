@@ -10,7 +10,7 @@ var passport = require('passport');
 require('./configs/connectDatabase');
 
 // implement passport
-require('./configs/passport')(passport);
+require('./configs/passport');
 
 // implement router
 var indexRouter = require('./routes/index');
@@ -23,7 +23,7 @@ var app = express();
 
 // express session
 app.use(session({
-  secret: 'cats',
+  secret: 'keyboard cat',
   resave: true,
   saveUninitialized: true
 }));

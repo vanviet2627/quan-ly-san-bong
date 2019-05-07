@@ -1,16 +1,23 @@
 var express = require('express');
 var router = express.Router();
 const User = require('../models/user.model');
-const { forwardAuthenticated, ensureAuthenticated } = require('../utils/auth');
+const { forwardAuthenticated, ensureAuthenticated } = require('../configs/auth');
 const passport = require('passport');
 
 // login, logout & signup. Return as authenticate API
-router.post('/login', (req, res) => {
-  passport.authenticate('local', {
-    successRedirect: '/user',
-    failureRedirect: '/',
-    failureMessage: true
+router.post('/login', (req, res, next) => {
+  req.login(user, function(err) {
+    console.log("Alooo");
+    if (err) { return next(err); }
+    return res.redirect('/user/' + req.user.username);
   });
+
+  // passport.authenticate(user, {
+  //   successRedirect: '/user'
+  // }, (req, res) => {
+  //   console.log(req);
+  //   res.json({acp: 0, mess: "Khong dung!"});
+  // });
 
   // let info = {
   //   email: req.body.email,
