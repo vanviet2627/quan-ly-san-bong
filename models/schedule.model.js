@@ -37,13 +37,8 @@ class ScheduleClass {
     async getAllSchedule() {
         return await ScheduleModel.find({}).populate('pitch').populate('renter').sort({createTime: -1})
     }
-    async getScheduleById() {
-        console.log({inSche: this.data});
-        
-        await ScheduleModel.find({ _id: this.data }).populate('pitch').populate('renter').sort({createTime: -1}).then(rs => {
-            console.log(rs);
-            
-        })
+    async getListScheduleByUserId() {
+        return await ScheduleModel.find({ renter: this.data }).populate('pitch').populate('renter').sort({createTime: -1})
     }
     async addSchedule() {
         if(this.data.rentDate && this.data.rentTime && this.data.renter && this.data.pitch && this.data.lasting) {

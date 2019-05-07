@@ -102,7 +102,7 @@ router.post('/changepassword', ensureAuthenticated, (req, res) => {
 router.get('/history', ensureAuthenticated, (req, res) => {
   console.log(req.user);
   
-  new Schedule( req.user._id ).getScheduleById().then(userSchedules => {
+  new Schedule( req.user._id ).getListScheduleByUserId().then(userSchedules => {
     console.log({SCHEDULE: userSchedules});
     
     res.render('userschedule', {
