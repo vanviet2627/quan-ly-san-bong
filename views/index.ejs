@@ -3,7 +3,33 @@
 <% include layouts/head %>
 <body>
 	<% include layouts/header %>
-	<!-- Load Facebook SDK for JavaScript -->
+	
+	<!-- Load Facebook SDK Chatfuel for JavaScript -->
+     <!--  <div id="fb-root"></div>
+      <script>
+        window.fbAsyncInit = function() {
+          FB.init({
+            xfbml            : true,
+            version          : 'v7.0'
+          });
+        };
+
+        (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+ -->
+      <!-- Your Chat Plugin code -->
+      <!-- <div class="fb-customerchat"
+        attribution=install_email
+        page_id="103556074765774" theme_color="#13cf13" logged_in_greeting="Xin chào. Em là NyN - Chatbot của P&G shop. Em có thể hỗ trợ anh/chị điều gì ạ?" logged_out_greeting="Xin chào. Em là NyN - Chatbot của P&G shop. Em có thể hỗ trợ anh/chị điều gì ạ?">
+      </div> -->
+	
+
+	<!-- Load Facebook SDK Messnow  for JavaScript -->
       <div id="fb-root"></div>
       <script>
         window.fbAsyncInit = function() {
@@ -23,14 +49,12 @@
 
       <!-- Your Chat Plugin code -->
       <div class="fb-customerchat"
-        attribution=install_email
-        page_id="103556074765774"
-  theme_color="#13cf13"
-  logged_in_greeting="Xin chào. Em là NyN - Chatbot của P&G shop. Em có thể hỗ trợ anh/chị điều gì ạ?"
-  logged_out_greeting="Xin chào. Em là NyN - Chatbot của P&G shop. Em có thể hỗ trợ anh/chị điều gì ạ?">
+        attribution=setup_tool
+        page_id="104061314713491" theme_color="#13cf13" logged_in_greeting="Xin chào. Em là NyN. Em có thể hỗ trợ anh/chị điều gì ạ?" logged_out_greeting="Xin chào. Em là NyN. Em có thể hỗ trợ anh/chị điều gì ạ?">
       </div>
-	<input type="hidden" id="islogin" value="<%= isLogin%>">
 
+
+	<input type="hidden" id="islogin" value="<%= isLogin%>">
 	<!-- Start signin Modal area -->
 	<div class="modal fade" id="signinModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	  <div class="modal-dialog" role="document">
